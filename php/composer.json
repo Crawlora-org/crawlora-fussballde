@@ -1,0 +1,50 @@
+{
+  "name": "crawlora/fussballde",
+  "description": "Crawlora Fussball.de API client with 27 endpoints for amateur football clubs, players, matches, statistics, news, and federation data",
+  "keywords": [
+    "crawlora",
+    "api-client",
+    "sdk",
+    "web-scraping",
+    "scraping-api",
+    "fussballde",
+    "fussball-de",
+    "fussballde-api",
+    "fussball-de-api",
+    "fussballde-scraper",
+    "fussball-de-scraper",
+    "fussballde-data",
+    "fussball-de-data",
+    "fussballde-amateur-football-clubs",
+    "fussballde-players",
+    "fussballde-matches",
+    "fussballde-statistics",
+    "fussballde-news",
+    "fussballde-federation-data"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": ">=8.1",
+    "ext-curl": "*",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Crawlora\\Fussballde\\": "src/Crawlora/Fussballde/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Crawlora\\Fussballde\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "php tests/client_test.php"
+  },
+  "homepage": "https://crawlora.net/?utm_source=packagist&utm_medium=referral&utm_campaign=platform-clients&utm_content=fussballde-php-homepage",
+  "support": {
+    "source": "https://github.com/Crawlora-org/crawlora-fussballde",
+    "docs": "https://crawlora.net/docs?utm_source=packagist&utm_medium=referral&utm_campaign=platform-clients&utm_content=fussballde-php-api-docs"
+  }
+}

@@ -1,0 +1,2200 @@
+{
+  "platform": "fussballde",
+  "operationCount": 27,
+  "operationIds": [
+    "fussballde-amateur-stats",
+    "fussballde-club",
+    "fussballde-club-matches",
+    "fussballde-club-search",
+    "fussballde-competition-options",
+    "fussballde-competitions",
+    "fussballde-federation",
+    "fussballde-filters",
+    "fussballde-match",
+    "fussballde-match-calendar",
+    "fussballde-match-comparison",
+    "fussballde-match-plan",
+    "fussballde-matchday",
+    "fussballde-national-top-scorers",
+    "fussballde-news",
+    "fussballde-news-article",
+    "fussballde-news-search",
+    "fussballde-player",
+    "fussballde-player-matches",
+    "fussballde-player-search",
+    "fussballde-position-history",
+    "fussballde-postal-codes",
+    "fussballde-table",
+    "fussballde-team",
+    "fussballde-team-matches",
+    "fussballde-team-squad",
+    "fussballde-top-scorers"
+  ],
+  "methods": {
+    "amateur_stats": "fussballde-amateur-stats",
+    "club": "fussballde-club",
+    "club_matches": "fussballde-club-matches",
+    "club_search": "fussballde-club-search",
+    "competition_options": "fussballde-competition-options",
+    "competitions": "fussballde-competitions",
+    "federation": "fussballde-federation",
+    "filters": "fussballde-filters",
+    "match": "fussballde-match",
+    "match_calendar": "fussballde-match-calendar",
+    "match_comparison": "fussballde-match-comparison",
+    "match_plan": "fussballde-match-plan",
+    "matchday": "fussballde-matchday",
+    "national_top_scorers": "fussballde-national-top-scorers",
+    "news": "fussballde-news",
+    "news_article": "fussballde-news-article",
+    "news_search": "fussballde-news-search",
+    "player": "fussballde-player",
+    "player_matches": "fussballde-player-matches",
+    "player_search": "fussballde-player-search",
+    "position_history": "fussballde-position-history",
+    "postal_codes": "fussballde-postal-codes",
+    "table": "fussballde-table",
+    "team": "fussballde-team",
+    "team_matches": "fussballde-team-matches",
+    "team_squad": "fussballde-team-squad",
+    "top_scorers": "fussballde-top-scorers"
+  },
+  "operations": {
+    "fussballde-amateur-stats": {
+      "id": "fussballde-amateur-stats",
+      "method": "GET",
+      "path": "/fussballde/amateur-stats",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "stat",
+          "in": "query",
+          "type": "string",
+          "required": true,
+          "enum": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+          ]
+        },
+        {
+          "name": "season",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "team_type",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "1",
+            "3",
+            "6",
+            "8",
+            "4",
+            "5",
+            "7",
+            "9"
+          ]
+        },
+        {
+          "name": "federation_id",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "89",
+            "32",
+            "31",
+            "66",
+            "61",
+            "02",
+            "03",
+            "34",
+            "62",
+            "23",
+            "22",
+            "01",
+            "41",
+            "43",
+            "63",
+            "64",
+            "04",
+            "33",
+            "42",
+            "65",
+            "21",
+            "35"
+          ]
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "type": "integer"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "type": "integer"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Ranking id",
+          "enum": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "in": "query",
+          "name": "stat",
+          "required": true,
+          "type": "string",
+          "x-example": "8"
+        },
+        {
+          "description": "Four-digit season code, 2627 for 2026/27; the site offers the current and previous season",
+          "in": "query",
+          "name": "season",
+          "type": "string",
+          "x-example": "2627"
+        },
+        {
+          "description": "Team type id; omit for all",
+          "enum": [
+            "1",
+            "3",
+            "6",
+            "8",
+            "4",
+            "5",
+            "7",
+            "9"
+          ],
+          "in": "query",
+          "name": "team_type",
+          "type": "string",
+          "x-example": "1"
+        },
+        {
+          "description": "Federation id; omit for all federations",
+          "enum": [
+            "89",
+            "32",
+            "31",
+            "66",
+            "61",
+            "02",
+            "03",
+            "34",
+            "62",
+            "23",
+            "22",
+            "01",
+            "41",
+            "43",
+            "63",
+            "64",
+            "04",
+            "33",
+            "42",
+            "65",
+            "21",
+            "35"
+          ],
+          "in": "query",
+          "name": "federation_id",
+          "type": "string",
+          "x-example": "21"
+        },
+        {
+          "description": "Rows per call, 1 to 100, default 30",
+          "in": "query",
+          "name": "limit",
+          "type": "integer",
+          "x-example": 30
+        },
+        {
+          "description": "Number of rows to skip, 0 to 1000, default 0",
+          "in": "query",
+          "name": "offset",
+          "type": "integer",
+          "x-example": 0
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "fussballde-club": {
+      "id": "fussballde-club",
+      "method": "GET",
+      "path": "/fussballde/club",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "club_id",
+          "in": "query",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "season",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "competition_kind",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "1",
+            "8",
+            "3",
+            "7",
+            "6",
+            "11",
+            "2",
+            "21",
+            "9"
+          ]
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Club id from a team or match, e.g. 00ES8GN8N400008VVV0AG08LVUPGND5I",
+          "in": "query",
+          "name": "club_id",
+          "required": true,
+          "type": "string",
+          "x-example": "00ES8GN8N400008VVV0AG08LVUPGND5I"
+        },
+        {
+          "description": "Four-digit season code such as 2526; default current season",
+          "in": "query",
+          "name": "season",
+          "type": "string",
+          "x-example": "2526"
+        },
+        {
+          "description": "Competition kind id; omit for all kinds",
+          "enum": [
+            "1",
+            "8",
+            "3",
+            "7",
+            "6",
+            "11",
+            "2",
+            "21",
+            "9"
+          ],
+          "in": "query",
+          "name": "competition_kind",
+          "type": "string",
+          "x-example": "1"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "fussballde-club-matches": {
+      "id": "fussballde-club-matches",
+      "method": "GET",
+      "path": "/fussballde/club-matches",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "club_id",
+          "in": "query",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "kind",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "all",
+            "next",
+            "previous"
+          ]
+        },
+        {
+          "name": "date_from",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "date_to",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "competition_kind",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "1",
+            "8",
+            "3",
+            "7",
+            "6",
+            "11",
+            "2",
+            "21",
+            "9"
+          ]
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "type": "integer"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "type": "integer"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Club id from fussballde-club or fussballde-club-search",
+          "in": "query",
+          "name": "club_id",
+          "required": true,
+          "type": "string",
+          "x-example": "00ES8GN8N400008VVV0AG08LVUPGND5I"
+        },
+        {
+          "description": "Match list kind, default all",
+          "enum": [
+            "all",
+            "next",
+            "previous"
+          ],
+          "in": "query",
+          "name": "kind",
+          "type": "string",
+          "x-example": "all"
+        },
+        {
+          "description": "kind all only: first day as YYYY-MM-DD, default 1 July of the current season",
+          "in": "query",
+          "name": "date_from",
+          "type": "string",
+          "x-example": "2026-10-01"
+        },
+        {
+          "description": "kind all only: last day as YYYY-MM-DD, default 30 June of the season",
+          "in": "query",
+          "name": "date_to",
+          "type": "string",
+          "x-example": "2026-10-31"
+        },
+        {
+          "description": "kind all only: competition kind id; omit for all kinds",
+          "enum": [
+            "1",
+            "8",
+            "3",
+            "7",
+            "6",
+            "11",
+            "2",
+            "21",
+            "9"
+          ],
+          "in": "query",
+          "name": "competition_kind",
+          "type": "string",
+          "x-example": "8"
+        },
+        {
+          "description": "Matches (kind all only) per call, 1 to 50, default 10",
+          "in": "query",
+          "name": "limit",
+          "type": "integer",
+          "x-example": 10
+        },
+        {
+          "description": "Number of matches to skip, 0 to 1000, default 0",
+          "in": "query",
+          "name": "offset",
+          "type": "integer",
+          "x-example": 0
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "fussballde-club-search": {
+      "id": "fussballde-club-search",
+      "method": "GET",
+      "path": "/fussballde/club-search",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "text",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "place",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "type": "integer"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "type": "integer"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Club name or part of it; text or place is required",
+          "in": "query",
+          "name": "text",
+          "type": "string",
+          "x-example": "Dortmund"
+        },
+        {
+          "description": "Postcode or place name; text or place is required",
+          "in": "query",
+          "name": "place",
+          "type": "string",
+          "x-example": "44139"
+        },
+        {
+          "description": "Clubs per call, 1 to 100, default 20",
+          "in": "query",
+          "name": "limit",
+          "type": "integer",
+          "x-example": 20
+        },
+        {
+          "description": "Number of clubs to skip, 0 to 2000, default 0",
+          "in": "query",
+          "name": "offset",
+          "type": "integer",
+          "x-example": 0
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "fussballde-competition-options": {
+      "id": "fussballde-competition-options",
+      "method": "GET",
+      "path": "/fussballde/competition-options",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "federation_id",
+          "in": "query",
+          "type": "string",
+          "required": true,
+          "enum": [
+            "89",
+            "32",
+            "31",
+            "66",
+            "61",
+            "02",
+            "03",
+            "34",
+            "62",
+            "23",
+            "22",
+            "01",
+            "41",
+            "43",
+            "63",
+            "64",
+            "04",
+            "33",
+            "42",
+            "65",
+            "21",
+            "35"
+          ]
+        },
+        {
+          "name": "season",
+          "in": "query",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "competition_type",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "1",
+            "308",
+            "300",
+            "70",
+            "305",
+            "-300",
+            "-305",
+            "11",
+            "2",
+            "-2",
+            "12"
+          ]
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Federation id",
+          "enum": [
+            "89",
+            "32",
+            "31",
+            "66",
+            "61",
+            "02",
+            "03",
+            "34",
+            "62",
+            "23",
+            "22",
+            "01",
+            "41",
+            "43",
+            "63",
+            "64",
+            "04",
+            "33",
+            "42",
+            "65",
+            "21",
+            "35"
+          ],
+          "in": "query",
+          "name": "federation_id",
+          "required": true,
+          "type": "string",
+          "x-example": "89"
+        },
+        {
+          "description": "Four-digit season code, 2627 for 2026/27",
+          "in": "query",
+          "name": "season",
+          "required": true,
+          "type": "string",
+          "x-example": "2627"
+        },
+        {
+          "description": "Competition type id, default 1",
+          "enum": [
+            "1",
+            "308",
+            "300",
+            "70",
+            "305",
+            "-300",
+            "-305",
+            "11",
+            "2",
+            "-2",
+            "12"
+          ],
+          "in": "query",
+          "name": "competition_type",
+          "type": "string",
+          "x-example": "1"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "fussballde-competitions": {
+      "id": "fussballde-competitions",
+      "method": "GET",
+      "path": "/fussballde/competitions",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "federation_id",
+          "in": "query",
+          "type": "string",
+          "required": true,
+          "enum": [
+            "89",
+            "32",
+            "31",
+            "66",
+            "61",
+            "02",
+            "03",
+            "34",
+            "62",
+            "23",
+            "22",
+            "01",
+            "41",
+            "43",
+            "63",
+            "64",
+            "04",
+            "33",
+            "42",
+            "65",
+            "21",
+            "35"
+          ]
+        },
+        {
+          "name": "season",
+          "in": "query",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "competition_type",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "1",
+            "308",
+            "300",
+            "70",
+            "305",
+            "-300",
+            "-305",
+            "11",
+            "2",
+            "-2",
+            "12"
+          ]
+        },
+        {
+          "name": "team_type",
+          "in": "query",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "league",
+          "in": "query",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "area",
+          "in": "query",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Federation id",
+          "enum": [
+            "89",
+            "32",
+            "31",
+            "66",
+            "61",
+            "02",
+            "03",
+            "34",
+            "62",
+            "23",
+            "22",
+            "01",
+            "41",
+            "43",
+            "63",
+            "64",
+            "04",
+            "33",
+            "42",
+            "65",
+            "21",
+            "35"
+          ],
+          "in": "query",
+          "name": "federation_id",
+          "required": true,
+          "type": "string",
+          "x-example": "89"
+        },
+        {
+          "description": "Four-digit season code",
+          "in": "query",
+          "name": "season",
+          "required": true,
+          "type": "string",
+          "x-example": "2627"
+        },
+        {
+          "description": "Competition type id, default 1",
+          "enum": [
+            "1",
+            "308",
+            "300",
+            "70",
+            "305",
+            "-300",
+            "-305",
+            "11",
+            "2",
+            "-2",
+            "12"
+          ],
+          "in": "query",
+          "name": "competition_type",
+          "type": "string",
+          "x-example": "1"
+        },
+        {
+          "description": "Team type id from fussballde-competition-options",
+          "in": "query",
+          "name": "team_type",
+          "required": true,
+          "type": "string",
+          "x-example": "1"
+        },
+        {
+          "description": "League id from fussballde-competition-options",
+          "in": "query",
+          "name": "league",
+          "required": true,
+          "type": "string",
+          "x-example": "1"
+        },
+        {
+          "description": "Area id from fussballde-competition-options",
+          "in": "query",
+          "name": "area",
+          "required": true,
+          "type": "string",
+          "x-example": "0123456789ABCDEF0123456700004010"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "fussballde-federation": {
+      "id": "fussballde-federation",
+      "method": "GET",
+      "path": "/fussballde/federation",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "federation_id",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "89",
+            "32",
+            "31",
+            "66",
+            "61",
+            "02",
+            "03",
+            "34",
+            "62",
+            "23",
+            "22",
+            "01",
+            "41",
+            "43",
+            "63",
+            "64",
+            "04",
+            "33",
+            "42",
+            "65",
+            "21",
+            "35"
+          ]
+        },
+        {
+          "name": "regional_association",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "nord",
+            "nordost",
+            "sued",
+            "suedwest",
+            "west"
+          ]
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Federation id; provide exactly one of federation_id and regional_association",
+          "enum": [
+            "89",
+            "32",
+            "31",
+            "66",
+            "61",
+            "02",
+            "03",
+            "34",
+            "62",
+            "23",
+            "22",
+            "01",
+            "41",
+            "43",
+            "63",
+            "64",
+            "04",
+            "33",
+            "42",
+            "65",
+            "21",
+            "35"
+          ],
+          "in": "query",
+          "name": "federation_id",
+          "type": "string",
+          "x-example": "21"
+        },
+        {
+          "description": "Regional association; provide exactly one of federation_id and regional_association",
+          "enum": [
+            "nord",
+            "nordost",
+            "sued",
+            "suedwest",
+            "west"
+          ],
+          "in": "query",
+          "name": "regional_association",
+          "type": "string",
+          "x-example": "west"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "fussballde-filters": {
+      "id": "fussballde-filters",
+      "method": "GET",
+      "path": "/fussballde/filters",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "federation_id",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "89",
+            "32",
+            "31",
+            "66",
+            "61",
+            "02",
+            "03",
+            "34",
+            "62",
+            "23",
+            "22",
+            "01",
+            "41",
+            "43",
+            "63",
+            "64",
+            "04",
+            "33",
+            "42",
+            "65",
+            "21",
+            "35"
+          ]
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Optional federation id that narrows seasons and competition types to one federation",
+          "enum": [
+            "89",
+            "32",
+            "31",
+            "66",
+            "61",
+            "02",
+            "03",
+            "34",
+            "62",
+            "23",
+            "22",
+            "01",
+            "41",
+            "43",
+            "63",
+            "64",
+            "04",
+            "33",
+            "42",
+            "65",
+            "21",
+            "35"
+          ],
+          "in": "query",
+          "name": "federation_id",
+          "type": "string",
+          "x-example": "31"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "fussballde-match": {
+      "id": "fussballde-match",
+      "method": "GET",
+      "path": "/fussballde/match",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "match_id",
+          "in": "query",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Match id from fussballde-matchday or fussballde-match-plan",
+          "in": "query",
+          "name": "match_id",
+          "required": true,
+          "type": "string",
+          "x-example": "031BFTHDCC000000VS5489BUVUR5FS5A"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "fussballde-match-calendar": {
+      "id": "fussballde-match-calendar",
+      "method": "GET",
+      "path": "/fussballde/match-calendar",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "postal_code",
+          "in": "query",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "date_from",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "date_to",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "team_types",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "competition_kind",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "1",
+            "8",
+            "3",
+            "7",
+            "6",
+            "11",
+            "2",
+            "21",
+            "9"
+          ]
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Five-digit German postcode; look one up with fussballde-postal-codes",
+          "in": "query",
+          "name": "postal_code",
+          "required": true,
+          "type": "string",
+          "x-example": "44139"
+        },
+        {
+          "description": "First day as YYYY-MM-DD, default today (Europe/Berlin)",
+          "in": "query",
+          "name": "date_from",
+          "type": "string",
+          "x-example": "2026-10-24"
+        },
+        {
+          "description": "Last day as YYYY-MM-DD, at most 92 days after date_from, default six days after date_from",
+          "in": "query",
+          "name": "date_to",
+          "type": "string",
+          "x-example": "2026-10-31"
+        },
+        {
+          "description": "Comma-separated team type ids such as 1,3; omit for all team types",
+          "in": "query",
+          "name": "team_types",
+          "type": "string",
+          "x-example": "1,3"
+        },
+        {
+          "description": "Competition kind id; omit for all kinds",
+          "enum": [
+            "1",
+            "8",
+            "3",
+            "7",
+            "6",
+            "11",
+            "2",
+            "21",
+            "9"
+          ],
+          "in": "query",
+          "name": "competition_kind",
+          "type": "string",
+          "x-example": "1"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "fussballde-match-comparison": {
+      "id": "fussballde-match-comparison",
+      "method": "GET",
+      "path": "/fussballde/match-comparison",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "match_id",
+          "in": "query",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "view",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "history",
+            "meetings",
+            "season"
+          ]
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Match id from fussballde-matchday or fussballde-match-plan",
+          "in": "query",
+          "name": "match_id",
+          "required": true,
+          "type": "string",
+          "x-example": "031BFTHDCC000000VS5489BUVUR5FS5A"
+        },
+        {
+          "description": "Comparison view, default history",
+          "enum": [
+            "history",
+            "meetings",
+            "season"
+          ],
+          "in": "query",
+          "name": "view",
+          "type": "string",
+          "x-example": "history"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "fussballde-match-plan": {
+      "id": "fussballde-match-plan",
+      "method": "GET",
+      "path": "/fussballde/match-plan",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "competition_id",
+          "in": "query",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "team_id",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "date_from",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "date_to",
+          "in": "query",
+          "type": "string"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Competition id from fussballde-competitions",
+          "in": "query",
+          "name": "competition_id",
+          "required": true,
+          "type": "string",
+          "x-example": "031BFREJC800001BVS5489BUVUR5FS5A-G"
+        },
+        {
+          "description": "Team id to keep only that team's matches",
+          "in": "query",
+          "name": "team_id",
+          "type": "string",
+          "x-example": "011MI8V6UC000000VTVG0001VTR8C1K7"
+        },
+        {
+          "description": "Earliest match date as YYYY-MM-DD; default is the whole season",
+          "in": "query",
+          "name": "date_from",
+          "type": "string",
+          "x-example": "2026-10-01"
+        },
+        {
+          "description": "Latest match date as YYYY-MM-DD; default is the whole season",
+          "in": "query",
+          "name": "date_to",
+          "type": "string",
+          "x-example": "2026-10-31"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "fussballde-matchday": {
+      "id": "fussballde-matchday",
+      "method": "GET",
+      "path": "/fussballde/matchday",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "competition_id",
+          "in": "query",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "date",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "matchday",
+          "in": "query",
+          "type": "integer"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Competition id from fussballde-competitions",
+          "in": "query",
+          "name": "competition_id",
+          "required": true,
+          "type": "string",
+          "x-example": "031BFREJC800001BVS5489BUVUR5FS5A-G"
+        },
+        {
+          "description": "Matchday date as YYYY-MM-DD; omit for the current matchday; cannot be combined with matchday",
+          "in": "query",
+          "name": "date",
+          "type": "string",
+          "x-example": "2026-10-03"
+        },
+        {
+          "description": "Matchday number, 1 to the competition's matchday count (34 for the Bundesliga); cannot be combined with date",
+          "in": "query",
+          "name": "matchday",
+          "type": "integer",
+          "x-example": 3
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "fussballde-national-top-scorers": {
+      "id": "fussballde-national-top-scorers",
+      "method": "GET",
+      "path": "/fussballde/national-top-scorers",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "team_type",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "men",
+            "women"
+          ]
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Ranking to return, default men",
+          "enum": [
+            "men",
+            "women"
+          ],
+          "in": "query",
+          "name": "team_type",
+          "type": "string",
+          "x-example": "men"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "fussballde-news": {
+      "id": "fussballde-news",
+      "method": "GET",
+      "path": "/fussballde/news",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "stream",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "all_news",
+            "magazin",
+            "regionalliga",
+            "verbaende",
+            "service",
+            "aktionen",
+            "helpcenter"
+          ]
+        },
+        {
+          "name": "regional_league",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "nord",
+            "nordost",
+            "west",
+            "suedwest",
+            "bayern"
+          ]
+        },
+        {
+          "name": "help_category",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "allgemeines",
+            "app",
+            "liveticker",
+            "mannschaftsseite",
+            "profile",
+            "registrierung",
+            "training_service",
+            "widgets"
+          ]
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "type": "integer"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "type": "integer"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "News stream, default all_news",
+          "enum": [
+            "all_news",
+            "magazin",
+            "regionalliga",
+            "verbaende",
+            "service",
+            "aktionen",
+            "helpcenter"
+          ],
+          "in": "query",
+          "name": "stream",
+          "type": "string",
+          "x-example": "all_news"
+        },
+        {
+          "description": "Only Regionalliga news of one league (implies stream regionalliga)",
+          "enum": [
+            "nord",
+            "nordost",
+            "west",
+            "suedwest",
+            "bayern"
+          ],
+          "in": "query",
+          "name": "regional_league",
+          "type": "string",
+          "x-example": "nord"
+        },
+        {
+          "description": "Only help-center articles of one category (implies stream helpcenter)",
+          "enum": [
+            "allgemeines",
+            "app",
+            "liveticker",
+            "mannschaftsseite",
+            "profile",
+            "registrierung",
+            "training_service",
+            "widgets"
+          ],
+          "in": "query",
+          "name": "help_category",
+          "type": "string",
+          "x-example": "app"
+        },
+        {
+          "description": "Articles per call, 1 to 50, default 10",
+          "in": "query",
+          "name": "limit",
+          "type": "integer",
+          "x-example": 10
+        },
+        {
+          "description": "Number of articles to skip, 0 to 5000, default 0",
+          "in": "query",
+          "name": "offset",
+          "type": "integer",
+          "x-example": 0
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "fussballde-news-article": {
+      "id": "fussballde-news-article",
+      "method": "GET",
+      "path": "/fussballde/news-article",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "article_id",
+          "in": "query",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Numeric article id from fussballde-news",
+          "in": "query",
+          "name": "article_id",
+          "required": true,
+          "type": "string",
+          "x-example": "10067512"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "fussballde-news-search": {
+      "id": "fussballde-news-search",
+      "method": "GET",
+      "path": "/fussballde/news-search",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "q",
+          "in": "query",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "channel",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "news",
+            "pro_news"
+          ]
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "type": "integer"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "type": "integer"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Search text, 2 to 80 characters",
+          "in": "query",
+          "name": "q",
+          "required": true,
+          "type": "string",
+          "x-example": "Dortmund"
+        },
+        {
+          "description": "News channel, default news",
+          "enum": [
+            "news",
+            "pro_news"
+          ],
+          "in": "query",
+          "name": "channel",
+          "type": "string",
+          "x-example": "news"
+        },
+        {
+          "description": "Articles per call, 1 to 50, default 10",
+          "in": "query",
+          "name": "limit",
+          "type": "integer",
+          "x-example": 10
+        },
+        {
+          "description": "Number of hits to skip, 0 to 10000, default 0",
+          "in": "query",
+          "name": "offset",
+          "type": "integer",
+          "x-example": 0
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "fussballde-player": {
+      "id": "fussballde-player",
+      "method": "GET",
+      "path": "/fussballde/player",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "player_id",
+          "in": "query",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Player id from fussballde-player-search, fussballde-top-scorers, fussballde-team-squad or fussballde-amateur-stats",
+          "in": "query",
+          "name": "player_id",
+          "required": true,
+          "type": "string",
+          "x-example": "01MH0AKR7C000007VV0AG13EVSFDFGE6"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "fussballde-player-matches": {
+      "id": "fussballde-player-matches",
+      "method": "GET",
+      "path": "/fussballde/player-matches",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "player_id",
+          "in": "query",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "season",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "team_id",
+          "in": "query",
+          "type": "string"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Player id of a full profile, see fussballde-player",
+          "in": "query",
+          "name": "player_id",
+          "required": true,
+          "type": "string",
+          "x-example": "01MH0AKR7C000007VV0AG13EVSFDFGE6"
+        },
+        {
+          "description": "Four-digit season code, default current season",
+          "in": "query",
+          "name": "season",
+          "type": "string",
+          "x-example": "2627"
+        },
+        {
+          "description": "Team id from the teams list of a previous response; default the player's main team",
+          "in": "query",
+          "name": "team_id",
+          "type": "string",
+          "x-example": "030POM2JO0000000VS5489BSVSO3A7B3"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "fussballde-player-search": {
+      "id": "fussballde-player-search",
+      "method": "GET",
+      "path": "/fussballde/player-search",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "first_name",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "last_name",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "place",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "type": "integer"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "type": "integer"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "First name; first_name or last_name is required",
+          "in": "query",
+          "name": "first_name",
+          "type": "string",
+          "x-example": "Niclas"
+        },
+        {
+          "description": "Last name; first_name or last_name is required",
+          "in": "query",
+          "name": "last_name",
+          "type": "string",
+          "x-example": "Füllkrug"
+        },
+        {
+          "description": "Postcode or place name to narrow the result; cannot be used alone",
+          "in": "query",
+          "name": "place",
+          "type": "string",
+          "x-example": "44139"
+        },
+        {
+          "description": "Players per call, 1 to 100, default 20",
+          "in": "query",
+          "name": "limit",
+          "type": "integer",
+          "x-example": 20
+        },
+        {
+          "description": "Number of players to skip, 0 to 2000, default 0",
+          "in": "query",
+          "name": "offset",
+          "type": "integer",
+          "x-example": 0
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "fussballde-position-history": {
+      "id": "fussballde-position-history",
+      "method": "GET",
+      "path": "/fussballde/position-history",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "competition_id",
+          "in": "query",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Competition id from fussballde-competitions",
+          "in": "query",
+          "name": "competition_id",
+          "required": true,
+          "type": "string",
+          "x-example": "031BFREJC800001BVS5489BUVUR5FS5A-G"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "fussballde-postal-codes": {
+      "id": "fussballde-postal-codes",
+      "method": "GET",
+      "path": "/fussballde/postal-codes",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "q",
+          "in": "query",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Place name or postcode prefix, 2 to 40 characters",
+          "in": "query",
+          "name": "q",
+          "required": true,
+          "type": "string",
+          "x-example": "Dortmund"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "fussballde-table": {
+      "id": "fussballde-table",
+      "method": "GET",
+      "path": "/fussballde/table",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "competition_id",
+          "in": "query",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "view",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "overall",
+            "home_away",
+            "rounds",
+            "fairness",
+            "cross"
+          ]
+        },
+        {
+          "name": "matchday",
+          "in": "query",
+          "type": "integer"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Competition id from fussballde-competitions",
+          "in": "query",
+          "name": "competition_id",
+          "required": true,
+          "type": "string",
+          "x-example": "031BFREJC800001BVS5489BUVUR5FS5A-G"
+        },
+        {
+          "description": "Standings view, default overall",
+          "enum": [
+            "overall",
+            "home_away",
+            "rounds",
+            "fairness",
+            "cross"
+          ],
+          "in": "query",
+          "name": "view",
+          "type": "string",
+          "x-example": "overall"
+        },
+        {
+          "description": "Return the standings after this matchday, 1 to the competition's matchday count; not available for the fairness view",
+          "in": "query",
+          "name": "matchday",
+          "type": "integer",
+          "x-example": 3
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "fussballde-team": {
+      "id": "fussballde-team",
+      "method": "GET",
+      "path": "/fussballde/team",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "team_id",
+          "in": "query",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Team id from fussballde-matchday, fussballde-table or fussballde-club",
+          "in": "query",
+          "name": "team_id",
+          "required": true,
+          "type": "string",
+          "x-example": "011MI8V6UC000000VTVG0001VTR8C1K7"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "fussballde-team-matches": {
+      "id": "fussballde-team-matches",
+      "method": "GET",
+      "path": "/fussballde/team-matches",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "team_id",
+          "in": "query",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "kind",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "all",
+            "next",
+            "previous",
+            "wins",
+            "draws",
+            "losses"
+          ]
+        },
+        {
+          "name": "date_from",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "date_to",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "competition_kind",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "1",
+            "8",
+            "3",
+            "7",
+            "6",
+            "11",
+            "2",
+            "21",
+            "9"
+          ]
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "type": "integer"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "type": "integer"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Team id, see fussballde-team",
+          "in": "query",
+          "name": "team_id",
+          "required": true,
+          "type": "string",
+          "x-example": "011MI8V6UC000000VTVG0001VTR8C1K7"
+        },
+        {
+          "description": "Match list kind, default all",
+          "enum": [
+            "all",
+            "next",
+            "previous",
+            "wins",
+            "draws",
+            "losses"
+          ],
+          "in": "query",
+          "name": "kind",
+          "type": "string",
+          "x-example": "all"
+        },
+        {
+          "description": "kind all only: first day as YYYY-MM-DD, default 1 July of the current season",
+          "in": "query",
+          "name": "date_from",
+          "type": "string",
+          "x-example": "2026-07-01"
+        },
+        {
+          "description": "kind all only: last day as YYYY-MM-DD, default 30 June of the season",
+          "in": "query",
+          "name": "date_to",
+          "type": "string",
+          "x-example": "2027-06-30"
+        },
+        {
+          "description": "kind all only: competition kind id; omit for all kinds",
+          "enum": [
+            "1",
+            "8",
+            "3",
+            "7",
+            "6",
+            "11",
+            "2",
+            "21",
+            "9"
+          ],
+          "in": "query",
+          "name": "competition_kind",
+          "type": "string",
+          "x-example": "8"
+        },
+        {
+          "description": "Matches (kind all only) per call, 1 to 50, default 10",
+          "in": "query",
+          "name": "limit",
+          "type": "integer",
+          "x-example": 10
+        },
+        {
+          "description": "Number of matches to skip, 0 to 1000, default 0",
+          "in": "query",
+          "name": "offset",
+          "type": "integer",
+          "x-example": 0
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "fussballde-team-squad": {
+      "id": "fussballde-team-squad",
+      "method": "GET",
+      "path": "/fussballde/team-squad",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "team_id",
+          "in": "query",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "season",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "kind",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "squad",
+            "arrivals",
+            "departures"
+          ]
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Team id, see fussballde-team",
+          "in": "query",
+          "name": "team_id",
+          "required": true,
+          "type": "string",
+          "x-example": "011MI8V6UC000000VTVG0001VTR8C1K7"
+        },
+        {
+          "description": "Four-digit season code, default current season",
+          "in": "query",
+          "name": "season",
+          "type": "string",
+          "x-example": "2627"
+        },
+        {
+          "description": "Player list kind, default squad",
+          "enum": [
+            "squad",
+            "arrivals",
+            "departures"
+          ],
+          "in": "query",
+          "name": "kind",
+          "type": "string",
+          "x-example": "squad"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "fussballde-top-scorers": {
+      "id": "fussballde-top-scorers",
+      "method": "GET",
+      "path": "/fussballde/top-scorers",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "competition_id",
+          "in": "query",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "type": "integer"
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "type": "integer"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Competition id from fussballde-competitions",
+          "in": "query",
+          "name": "competition_id",
+          "required": true,
+          "type": "string",
+          "x-example": "031BFREJC800001BVS5489BUVUR5FS5A-G"
+        },
+        {
+          "description": "Scorers per call, 1 to 100, default 30",
+          "in": "query",
+          "name": "limit",
+          "type": "integer",
+          "x-example": 30
+        },
+        {
+          "description": "Number of scorers to skip, 0 to 1000, default 0",
+          "in": "query",
+          "name": "offset",
+          "type": "integer",
+          "x-example": 0
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    }
+  }
+}

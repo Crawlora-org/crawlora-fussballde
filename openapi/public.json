@@ -1,0 +1,4414 @@
+{
+  "basePath": "/api/v1",
+  "definitions": {
+    "app.Response": {
+      "description": "The Response struct is used for wrapping the API response with a code, message, and data.",
+      "properties": {
+        "code": {
+          "description": "Code is the HTTP status code or a custom code used to indicate the result of the request\n@example 200",
+          "type": "integer"
+        },
+        "data": {
+          "description": "Data is the response data (can be any object or null)\n@example {\"id\": 1, \"name\": \"John Doe\"}"
+        },
+        "msg": {
+          "description": "Msg is the message that describes the result of the request\n@example \"Request successful\""
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.AmateurStatRow": {
+      "properties": {
+        "away": {
+          "$ref": "#/definitions/fussballde.TeamRef"
+        },
+        "competition_id": {
+          "type": "string"
+        },
+        "home": {
+          "$ref": "#/definitions/fussballde.TeamRef"
+        },
+        "league": {
+          "example": "Kreisliga C",
+          "type": "string"
+        },
+        "match_id": {
+          "type": "string"
+        },
+        "player": {
+          "example": "Dominik Milaszewski",
+          "type": "string"
+        },
+        "player_id": {
+          "type": "string"
+        },
+        "position": {
+          "type": "integer"
+        },
+        "result": {
+          "example": "0:30",
+          "type": "string"
+        },
+        "team": {
+          "$ref": "#/definitions/fussballde.TeamRef"
+        },
+        "team_type": {
+          "example": "Herren",
+          "type": "string"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/fussballde.StatValue"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.AmateurStatsResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "federation_id": {
+          "type": "string"
+        },
+        "final": {
+          "example": false,
+          "type": "boolean"
+        },
+        "limit": {
+          "type": "integer"
+        },
+        "offset": {
+          "type": "integer"
+        },
+        "rows": {
+          "items": {
+            "$ref": "#/definitions/fussballde.AmateurStatRow"
+          },
+          "type": "array"
+        },
+        "season": {
+          "type": "string"
+        },
+        "stat": {
+          "type": "string"
+        },
+        "stat_name": {
+          "type": "string"
+        },
+        "team_type": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.ClubDetail": {
+      "properties": {
+        "club_id": {
+          "type": "string"
+        },
+        "federation": {
+          "type": "string"
+        },
+        "federation_id": {
+          "type": "string"
+        },
+        "junior_team_count": {
+          "type": "integer"
+        },
+        "name": {
+          "example": "Borussia Dortmund",
+          "type": "string"
+        },
+        "profile": {
+          "items": {
+            "$ref": "#/definitions/fussballde.FactRow"
+          },
+          "type": "array"
+        },
+        "season": {
+          "example": "2627",
+          "type": "string"
+        },
+        "senior_team_count": {
+          "type": "integer"
+        },
+        "team_count": {
+          "type": "integer"
+        },
+        "teams": {
+          "items": {
+            "$ref": "#/definitions/fussballde.ClubTeam"
+          },
+          "type": "array"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.ClubHit": {
+      "properties": {
+        "city": {
+          "example": "Dortmund",
+          "type": "string"
+        },
+        "club_id": {
+          "example": "00ES8GN8N400008VVV0AG08LVUPGND5I",
+          "type": "string"
+        },
+        "logo_url": {
+          "type": "string"
+        },
+        "name": {
+          "example": "Borussia Dortmund",
+          "type": "string"
+        },
+        "postal_code": {
+          "example": "44139",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.ClubMatchesResponse": {
+      "properties": {
+        "club_id": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "date_from": {
+          "type": "string"
+        },
+        "date_to": {
+          "type": "string"
+        },
+        "final": {
+          "type": "boolean"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        },
+        "matches": {
+          "items": {
+            "$ref": "#/definitions/fussballde.MatchRow"
+          },
+          "type": "array"
+        },
+        "offset": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.ClubSearchResponse": {
+      "properties": {
+        "clubs": {
+          "items": {
+            "$ref": "#/definitions/fussballde.ClubHit"
+          },
+          "type": "array"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "final": {
+          "example": false,
+          "type": "boolean"
+        },
+        "limit": {
+          "type": "integer"
+        },
+        "offset": {
+          "type": "integer"
+        },
+        "place": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "total": {
+          "example": 102,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.ClubTeam": {
+      "properties": {
+        "competition": {
+          "type": "string"
+        },
+        "competition_id": {
+          "type": "string"
+        },
+        "competition_type": {
+          "example": "Freundschaftsspiele",
+          "type": "string"
+        },
+        "name": {
+          "example": "Herren - Borussia Dortmund",
+          "type": "string"
+        },
+        "team_id": {
+          "type": "string"
+        },
+        "team_type": {
+          "example": "Herren",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.ComparisonRow": {
+      "properties": {
+        "away": {
+          "example": "50",
+          "type": "string"
+        },
+        "home": {
+          "example": "50",
+          "type": "string"
+        },
+        "label": {
+          "example": "Duelle",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.CompetitionLink": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "kind": {
+          "example": "Meisterschaft",
+          "type": "string"
+        },
+        "name": {
+          "example": "Bundesliga",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.CompetitionOptionsResponse": {
+      "properties": {
+        "competition_type": {
+          "example": "1",
+          "type": "string"
+        },
+        "federation_id": {
+          "example": "89",
+          "type": "string"
+        },
+        "season": {
+          "example": "2627",
+          "type": "string"
+        },
+        "team_types": {
+          "items": {
+            "$ref": "#/definitions/fussballde.TeamTypeOption"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.CompetitionRef": {
+      "properties": {
+        "area_id": {
+          "type": "string"
+        },
+        "id": {
+          "example": "031BFREJC800001BVS5489BUVUR5FS5A-G",
+          "type": "string"
+        },
+        "league_id": {
+          "example": "1",
+          "type": "string"
+        },
+        "name": {
+          "example": "Bundesliga",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.CompetitionsResponse": {
+      "properties": {
+        "area": {
+          "type": "string"
+        },
+        "competition_type": {
+          "type": "string"
+        },
+        "competitions": {
+          "items": {
+            "$ref": "#/definitions/fussballde.CompetitionRef"
+          },
+          "type": "array"
+        },
+        "federation_id": {
+          "type": "string"
+        },
+        "league": {
+          "type": "string"
+        },
+        "season": {
+          "type": "string"
+        },
+        "team_type": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.FactRow": {
+      "properties": {
+        "label": {
+          "example": "Gründungsjahr",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "value": {
+          "example": "1909",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.Federation": {
+      "properties": {
+        "id": {
+          "example": "89",
+          "type": "string"
+        },
+        "name": {
+          "example": "Deutschland",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.FederationDetail": {
+      "properties": {
+        "federation_id": {
+          "example": "21",
+          "type": "string"
+        },
+        "name": {
+          "example": "Fußball- und Leichtathletik-Verband Westfalen",
+          "type": "string"
+        },
+        "news": {
+          "items": {
+            "$ref": "#/definitions/fussballde.NewsItem"
+          },
+          "type": "array"
+        },
+        "profile": {
+          "items": {
+            "$ref": "#/definitions/fussballde.FactRow"
+          },
+          "type": "array"
+        },
+        "regional_association": {
+          "example": "west",
+          "type": "string"
+        },
+        "summary": {
+          "items": {
+            "$ref": "#/definitions/fussballde.FactRow"
+          },
+          "type": "array"
+        },
+        "url": {
+          "type": "string"
+        },
+        "verband_id": {
+          "example": "0123456789ABCDEF0123456700004130",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.FiltersResponse": {
+      "properties": {
+        "competition_types": {
+          "additionalProperties": {
+            "additionalProperties": {
+              "items": {
+                "$ref": "#/definitions/fussballde.Option"
+              },
+              "type": "array"
+            },
+            "type": "object"
+          },
+          "type": "object"
+        },
+        "current_season": {
+          "example": "2627",
+          "type": "string"
+        },
+        "default_competition_type": {
+          "example": "1",
+          "type": "string"
+        },
+        "federations": {
+          "items": {
+            "$ref": "#/definitions/fussballde.Federation"
+          },
+          "type": "array"
+        },
+        "seasons": {
+          "additionalProperties": {
+            "items": {
+              "$ref": "#/definitions/fussballde.Option"
+            },
+            "type": "array"
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.GoalEntry": {
+      "properties": {
+        "minute": {
+          "example": 80,
+          "type": "integer"
+        },
+        "player": {
+          "example": "Daniel Jonathan Svensson",
+          "type": "string"
+        },
+        "stoppage_minute": {
+          "example": 2,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.LeagueOption": {
+      "properties": {
+        "areas": {
+          "items": {
+            "$ref": "#/definitions/fussballde.Option"
+          },
+          "type": "array"
+        },
+        "id": {
+          "example": "1",
+          "type": "string"
+        },
+        "name": {
+          "example": "Bundesliga",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.MatchCalendarResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "date_from": {
+          "type": "string"
+        },
+        "date_to": {
+          "type": "string"
+        },
+        "matches": {
+          "items": {
+            "$ref": "#/definitions/fussballde.MatchRow"
+          },
+          "type": "array"
+        },
+        "postal_code": {
+          "type": "string"
+        },
+        "truncated": {
+          "example": false,
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.MatchComparisonResponse": {
+      "properties": {
+        "match_id": {
+          "type": "string"
+        },
+        "meetings": {
+          "items": {
+            "$ref": "#/definitions/fussballde.MatchRow"
+          },
+          "type": "array"
+        },
+        "rows": {
+          "items": {
+            "$ref": "#/definitions/fussballde.ComparisonRow"
+          },
+          "type": "array"
+        },
+        "view": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.MatchDetail": {
+      "properties": {
+        "assistants": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "away": {
+          "$ref": "#/definitions/fussballde.TeamRef"
+        },
+        "away_goals": {
+          "items": {
+            "$ref": "#/definitions/fussballde.GoalEntry"
+          },
+          "type": "array"
+        },
+        "away_score": {
+          "type": "integer"
+        },
+        "competition": {
+          "example": "Bundesliga",
+          "type": "string"
+        },
+        "competition_id": {
+          "type": "string"
+        },
+        "date": {
+          "example": "2026-10-09",
+          "type": "string"
+        },
+        "events": {
+          "items": {
+            "$ref": "#/definitions/fussballde.MatchEvent"
+          },
+          "type": "array"
+        },
+        "fourth_official": {
+          "type": "string"
+        },
+        "halftime_score": {
+          "example": "0 : 0",
+          "type": "string"
+        },
+        "home": {
+          "$ref": "#/definitions/fussballde.TeamRef"
+        },
+        "home_goals": {
+          "items": {
+            "$ref": "#/definitions/fussballde.GoalEntry"
+          },
+          "type": "array"
+        },
+        "home_score": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "string"
+        },
+        "match_number": {
+          "type": "string"
+        },
+        "matchday": {
+          "example": "5. Spieltag",
+          "type": "string"
+        },
+        "note": {
+          "description": "Note is the site's own marker, such as nE or Absetzung.",
+          "example": "nE",
+          "type": "string"
+        },
+        "referee": {
+          "type": "string"
+        },
+        "result_qualifier": {
+          "description": "ResultQualifier says how a result was reached when it was not simply played out.",
+          "enum": [
+            "after_extra_time",
+            "after_penalties",
+            "awarded",
+            "court_ruling",
+            "administrative_decision",
+            "test_match"
+          ],
+          "example": "after_penalties",
+          "type": "string"
+        },
+        "spectators": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "finished",
+            "scheduled",
+            "cancelled",
+            "annulled",
+            "abandoned",
+            "no_show",
+            "other"
+          ],
+          "example": "finished",
+          "type": "string"
+        },
+        "time": {
+          "example": "20:30",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "venue": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.MatchEvent": {
+      "properties": {
+        "minute": {
+          "type": "integer"
+        },
+        "side": {
+          "example": "home",
+          "type": "string"
+        },
+        "type": {
+          "example": "substitute",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.MatchPlanResponse": {
+      "properties": {
+        "competition_id": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "matches": {
+          "items": {
+            "$ref": "#/definitions/fussballde.MatchRow"
+          },
+          "type": "array"
+        },
+        "rounds": {
+          "description": "Rounds lists the rounds of a cup or tournament; pass a round id as competition_id to read that round alone.",
+          "items": {
+            "$ref": "#/definitions/fussballde.RoundRef"
+          },
+          "type": "array"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.MatchRow": {
+      "properties": {
+        "away": {
+          "$ref": "#/definitions/fussballde.TeamRef"
+        },
+        "away_score": {
+          "type": "integer"
+        },
+        "competition": {
+          "example": "Bundesliga",
+          "type": "string"
+        },
+        "date": {
+          "example": "2026-10-09",
+          "type": "string"
+        },
+        "home": {
+          "$ref": "#/definitions/fussballde.TeamRef"
+        },
+        "home_score": {
+          "type": "integer"
+        },
+        "id": {
+          "example": "031BFTHDCC000000VS5489BUVUR5FS5A",
+          "type": "string"
+        },
+        "league": {
+          "example": "Kreisfreundschaftsspiele",
+          "type": "string"
+        },
+        "match_number": {
+          "example": "037",
+          "type": "string"
+        },
+        "note": {
+          "description": "Note is the site's own marker, such as nE or Absetzung.",
+          "example": "nE",
+          "type": "string"
+        },
+        "result_qualifier": {
+          "description": "ResultQualifier says how a result was reached when it was not simply played out.",
+          "enum": [
+            "after_extra_time",
+            "after_penalties",
+            "awarded",
+            "court_ruling",
+            "administrative_decision",
+            "test_match"
+          ],
+          "example": "after_penalties",
+          "type": "string"
+        },
+        "round": {
+          "description": "Round is the round of a cup or tournament match, such as 1. Hauptrunde.",
+          "example": "2. Hauptrunde",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "finished",
+            "scheduled",
+            "cancelled",
+            "annulled",
+            "abandoned",
+            "no_show",
+            "other"
+          ],
+          "example": "finished",
+          "type": "string"
+        },
+        "team_type": {
+          "example": "D-Junioren",
+          "type": "string"
+        },
+        "time": {
+          "example": "20:30",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.MatchdayResponse": {
+      "properties": {
+        "competition_id": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "date": {
+          "type": "string"
+        },
+        "matchday": {
+          "example": 7,
+          "type": "integer"
+        },
+        "matchday_count": {
+          "example": 34,
+          "type": "integer"
+        },
+        "matches": {
+          "items": {
+            "$ref": "#/definitions/fussballde.MatchRow"
+          },
+          "type": "array"
+        },
+        "rounds": {
+          "description": "Rounds lists the rounds of a cup or tournament; pass a round id as competition_id to read that round.",
+          "items": {
+            "$ref": "#/definitions/fussballde.RoundRef"
+          },
+          "type": "array"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.NationalScorer": {
+      "properties": {
+        "club": {
+          "example": "VfB Oldenburg",
+          "type": "string"
+        },
+        "club_id": {
+          "type": "string"
+        },
+        "goals": {
+          "type": "integer"
+        },
+        "matches": {
+          "type": "integer"
+        },
+        "name": {
+          "example": "Mats Facklam",
+          "type": "string"
+        },
+        "player_id": {
+          "type": "string"
+        },
+        "position": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.NationalTopScorersResponse": {
+      "properties": {
+        "levels": {
+          "items": {
+            "$ref": "#/definitions/fussballde.ScorerLevel"
+          },
+          "type": "array"
+        },
+        "note": {
+          "type": "string"
+        },
+        "team_type": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.NewsArticle": {
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "image_caption": {
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "paragraphs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "time": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.NewsItem": {
+      "properties": {
+        "category": {
+          "example": "Magazin",
+          "type": "string"
+        },
+        "date": {
+          "example": "2026-10-22",
+          "type": "string"
+        },
+        "excerpt": {
+          "type": "string"
+        },
+        "id": {
+          "example": "10067512",
+          "type": "string"
+        },
+        "time": {
+          "example": "14:00",
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.NewsResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "final": {
+          "example": false,
+          "type": "boolean"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/fussballde.NewsItem"
+          },
+          "type": "array"
+        },
+        "limit": {
+          "type": "integer"
+        },
+        "offset": {
+          "type": "integer"
+        },
+        "stream": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.NewsSearchResponse": {
+      "properties": {
+        "channel": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "final": {
+          "example": false,
+          "type": "boolean"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/definitions/fussballde.NewsItem"
+          },
+          "type": "array"
+        },
+        "limit": {
+          "type": "integer"
+        },
+        "offset": {
+          "type": "integer"
+        },
+        "q": {
+          "type": "string"
+        },
+        "total": {
+          "example": 1974,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.Option": {
+      "properties": {
+        "id": {
+          "example": "2627",
+          "type": "string"
+        },
+        "name": {
+          "example": "26/27",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.PlayerAppearance": {
+      "properties": {
+        "goals": {
+          "type": "integer"
+        },
+        "match": {
+          "$ref": "#/definitions/fussballde.MatchRow"
+        },
+        "minutes": {
+          "type": "integer"
+        },
+        "subbed_in_minute": {
+          "type": "integer"
+        },
+        "subbed_out_minute": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.PlayerDetail": {
+      "properties": {
+        "birth_date": {
+          "example": "1993-02-09",
+          "type": "string"
+        },
+        "facts": {
+          "items": {
+            "$ref": "#/definitions/fussballde.FactRow"
+          },
+          "type": "array"
+        },
+        "name": {
+          "example": "Niclas Füllkrug",
+          "type": "string"
+        },
+        "player_id": {
+          "type": "string"
+        },
+        "profile_type": {
+          "example": "full",
+          "type": "string"
+        },
+        "stats": {
+          "items": {
+            "$ref": "#/definitions/fussballde.StatEntry"
+          },
+          "type": "array"
+        },
+        "stats_season": {
+          "example": "26/27",
+          "type": "string"
+        },
+        "team": {
+          "example": "SV Werder Bremen",
+          "type": "string"
+        },
+        "team_id": {
+          "type": "string"
+        },
+        "team_type": {
+          "example": "Herren",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.PlayerHit": {
+      "properties": {
+        "birth_date": {
+          "example": "1993-02-09",
+          "type": "string"
+        },
+        "name": {
+          "example": "Niclas Füllkrug",
+          "type": "string"
+        },
+        "player_id": {
+          "example": "01MH0AKR7C000007VV0AG13EVSFDFGE6",
+          "type": "string"
+        },
+        "team": {
+          "example": "SV Werder Bremen",
+          "type": "string"
+        },
+        "team_type": {
+          "example": "Herren",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.PlayerMatchesResponse": {
+      "properties": {
+        "appearances": {
+          "items": {
+            "$ref": "#/definitions/fussballde.PlayerAppearance"
+          },
+          "type": "array"
+        },
+        "competition": {
+          "example": "SV Werder Bremen (Herren), Bundesliga",
+          "type": "string"
+        },
+        "competitions": {
+          "items": {
+            "$ref": "#/definitions/fussballde.Option"
+          },
+          "type": "array"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "player_id": {
+          "type": "string"
+        },
+        "season": {
+          "type": "string"
+        },
+        "team_id": {
+          "type": "string"
+        },
+        "teams": {
+          "items": {
+            "$ref": "#/definitions/fussballde.Option"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.PlayerSearchResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "final": {
+          "example": false,
+          "type": "boolean"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        },
+        "offset": {
+          "type": "integer"
+        },
+        "place": {
+          "type": "string"
+        },
+        "players": {
+          "items": {
+            "$ref": "#/definitions/fussballde.PlayerHit"
+          },
+          "type": "array"
+        },
+        "total": {
+          "example": 1067,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.PositionHistoryResponse": {
+      "properties": {
+        "competition_id": {
+          "type": "string"
+        },
+        "matchdays": {
+          "type": "integer"
+        },
+        "teams": {
+          "items": {
+            "$ref": "#/definitions/fussballde.TeamPositions"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.PostalCode": {
+      "properties": {
+        "city": {
+          "example": "Dortmund",
+          "type": "string"
+        },
+        "district": {
+          "example": "Mitte",
+          "type": "string"
+        },
+        "postal_code": {
+          "example": "44139",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.PostalCodesResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "postal_codes": {
+          "items": {
+            "$ref": "#/definitions/fussballde.PostalCode"
+          },
+          "type": "array"
+        },
+        "q": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.RoundRef": {
+      "properties": {
+        "id": {
+          "example": "0316JUVAIC000000VS5489BTVU7GTVLE-R",
+          "type": "string"
+        },
+        "name": {
+          "example": "2. Hauptrunde",
+          "type": "string"
+        },
+        "open": {
+          "description": "Open reports whether the page shows the round's matches inline.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.ScorerLevel": {
+      "properties": {
+        "level": {
+          "example": "Ebene 4",
+          "type": "string"
+        },
+        "scorers": {
+          "items": {
+            "$ref": "#/definitions/fussballde.NationalScorer"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.ScorerRow": {
+      "properties": {
+        "goals": {
+          "type": "integer"
+        },
+        "name": {
+          "example": "Niclas Füllkrug",
+          "type": "string"
+        },
+        "player_id": {
+          "type": "string"
+        },
+        "position": {
+          "type": "integer"
+        },
+        "team": {
+          "$ref": "#/definitions/fussballde.TeamRef"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.SeasonResult": {
+      "properties": {
+        "competition": {
+          "example": "Bundesliga / Bundesliga",
+          "type": "string"
+        },
+        "result": {
+          "example": "2. PLATZ",
+          "type": "string"
+        },
+        "season": {
+          "example": "25/26",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.SquadPlayer": {
+      "properties": {
+        "appearances": {
+          "type": "integer"
+        },
+        "cells": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "goals": {
+          "type": "integer"
+        },
+        "minutes": {
+          "type": "integer"
+        },
+        "name": {
+          "example": "Anton, Waldemar",
+          "type": "string"
+        },
+        "player_id": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.StandingsRow": {
+      "properties": {
+        "cells": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "drawn": {
+          "type": "integer"
+        },
+        "goal_difference": {
+          "type": "integer"
+        },
+        "goals_against": {
+          "type": "integer"
+        },
+        "goals_for": {
+          "type": "integer"
+        },
+        "lost": {
+          "type": "integer"
+        },
+        "played": {
+          "type": "integer"
+        },
+        "points": {
+          "type": "integer"
+        },
+        "position": {
+          "type": "integer"
+        },
+        "team": {
+          "$ref": "#/definitions/fussballde.TeamRef"
+        },
+        "won": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.StandingsTable": {
+      "properties": {
+        "columns": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "rows": {
+          "items": {
+            "$ref": "#/definitions/fussballde.StandingsRow"
+          },
+          "type": "array"
+        },
+        "title": {
+          "example": "Heimtabelle",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.StatEntry": {
+      "properties": {
+        "label": {
+          "example": "Tore",
+          "type": "string"
+        },
+        "value": {
+          "example": "6",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.StatValue": {
+      "properties": {
+        "label": {
+          "example": "Tore",
+          "type": "string"
+        },
+        "value": {
+          "example": "47",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.TableResponse": {
+      "properties": {
+        "competition_id": {
+          "type": "string"
+        },
+        "matchday": {
+          "example": 3,
+          "type": "integer"
+        },
+        "tables": {
+          "items": {
+            "$ref": "#/definitions/fussballde.StandingsTable"
+          },
+          "type": "array"
+        },
+        "view": {
+          "example": "overall",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.TeamDetail": {
+      "properties": {
+        "club_id": {
+          "type": "string"
+        },
+        "club_profile": {
+          "items": {
+            "$ref": "#/definitions/fussballde.FactRow"
+          },
+          "type": "array"
+        },
+        "club_url": {
+          "type": "string"
+        },
+        "competitions": {
+          "items": {
+            "$ref": "#/definitions/fussballde.CompetitionLink"
+          },
+          "type": "array"
+        },
+        "federation": {
+          "example": "Westfalen",
+          "type": "string"
+        },
+        "federation_id": {
+          "type": "string"
+        },
+        "highest_league": {
+          "example": "Bundesliga",
+          "type": "string"
+        },
+        "history": {
+          "items": {
+            "$ref": "#/definitions/fussballde.SeasonResult"
+          },
+          "type": "array"
+        },
+        "logo_url": {
+          "type": "string"
+        },
+        "name": {
+          "example": "Borussia Dortmund",
+          "type": "string"
+        },
+        "summary": {
+          "items": {
+            "$ref": "#/definitions/fussballde.FactRow"
+          },
+          "type": "array"
+        },
+        "team_id": {
+          "type": "string"
+        },
+        "team_type": {
+          "example": "Herren",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "venues": {
+          "items": {
+            "$ref": "#/definitions/fussballde.FactRow"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.TeamMatchesResponse": {
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "date_from": {
+          "type": "string"
+        },
+        "date_to": {
+          "type": "string"
+        },
+        "final": {
+          "type": "boolean"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        },
+        "matches": {
+          "items": {
+            "$ref": "#/definitions/fussballde.MatchRow"
+          },
+          "type": "array"
+        },
+        "offset": {
+          "type": "integer"
+        },
+        "team_id": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.TeamPositions": {
+      "properties": {
+        "positions": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "team": {
+          "$ref": "#/definitions/fussballde.TeamRef"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.TeamRef": {
+      "properties": {
+        "club_id": {
+          "example": "00ES8GN8N400008VVV0AG08LVUPGND5I",
+          "type": "string"
+        },
+        "logo_url": {
+          "type": "string"
+        },
+        "name": {
+          "example": "Borussia Dortmund",
+          "type": "string"
+        },
+        "team_id": {
+          "example": "011MI8V6UC000000VTVG0001VTR8C1K7",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.TeamSquadResponse": {
+      "properties": {
+        "columns": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "players": {
+          "items": {
+            "$ref": "#/definitions/fussballde.SquadPlayer"
+          },
+          "type": "array"
+        },
+        "season": {
+          "type": "string"
+        },
+        "team_id": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.TeamTypeOption": {
+      "properties": {
+        "id": {
+          "example": "1",
+          "type": "string"
+        },
+        "leagues": {
+          "items": {
+            "$ref": "#/definitions/fussballde.LeagueOption"
+          },
+          "type": "array"
+        },
+        "name": {
+          "example": "Herren",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.TopScorersResponse": {
+      "properties": {
+        "competition_id": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "final": {
+          "example": false,
+          "type": "boolean"
+        },
+        "limit": {
+          "type": "integer"
+        },
+        "offset": {
+          "type": "integer"
+        },
+        "scorers": {
+          "items": {
+            "$ref": "#/definitions/fussballde.ScorerRow"
+          },
+          "type": "array"
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.amateurStatsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/fussballde.AmateurStatsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.clubMatchesResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/fussballde.ClubMatchesResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.clubResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/fussballde.ClubDetail"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.clubSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/fussballde.ClubSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.competitionOptionsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/fussballde.CompetitionOptionsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.competitionsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/fussballde.CompetitionsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.federationResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/fussballde.FederationDetail"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.filtersResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/fussballde.FiltersResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.matchCalendarResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/fussballde.MatchCalendarResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.matchComparisonResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/fussballde.MatchComparisonResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.matchPlanResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/fussballde.MatchPlanResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.matchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/fussballde.MatchDetail"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.matchdayResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/fussballde.MatchdayResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.nationalTopScorersResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/fussballde.NationalTopScorersResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.newsArticleResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/fussballde.NewsArticle"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.newsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/fussballde.NewsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.newsSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/fussballde.NewsSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.playerMatchesResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/fussballde.PlayerMatchesResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.playerResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/fussballde.PlayerDetail"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.playerSearchResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/fussballde.PlayerSearchResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.positionHistoryResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/fussballde.PositionHistoryResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.postalCodesResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/fussballde.PostalCodesResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.tableResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/fussballde.TableResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.teamMatchesResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/fussballde.TeamMatchesResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.teamResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/fussballde.TeamDetail"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.teamSquadResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/fussballde.TeamSquadResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "fussballde.topScorersResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/fussballde.TopScorersResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "host": "api.crawlora.net",
+  "info": {
+    "contact": {
+      "email": "support@crawlora.net",
+      "name": "API Support",
+      "url": "https://crawlora.net"
+    },
+    "description": "Crawlora is a hosted web-data and SERP API: call documented REST endpoints and get normalized JSON instead of HTML to parse — across search/SERP, maps and local, e-commerce, app stores, social, media and finance. One API key; Crawlora runs the proxy rotation, headless browsers and parsing behind the scenes. Billed pay-on-success: charged only on a successful 2xx response, 1-10 credits per call, with a free tier of 2,000 credits per month and no card. A hosted MCP server (mcp.crawlora.net/mcp) exposes the same catalog as agent tools. Search endpoints accept `q` as a universal alias for whichever search-term parameter they document (`query`, `term`, `keyword`, or Amazon's `k`), so one parameter name works across the whole catalog; an explicitly supplied documented name always wins.",
+    "license": {
+      "name": "Crawlora Terms of Service",
+      "url": "https://crawlora.net/terms"
+    },
+    "termsOfService": "https://crawlora.net/terms",
+    "title": "Crawlora API",
+    "version": "1.2",
+    "x-logo": {
+      "altText": "Crawlora",
+      "backgroundColor": "#FFFFFF",
+      "url": "https://raw.githubusercontent.com/Crawlora-org/crawlora-mcp/main/assets/logo-400x400.png"
+    }
+  },
+  "paths": {
+    "/fussballde/amateur-stats": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a page of one of the ten Top-Amateurstatistiken rankings (Kreisklasse to Regionalliga, championship matches): top teams by goals, goal ratio, goals against and points average, highest-scoring matches, biggest draws, and top scorers by goals, ratio and goals in one match per week or season. Filter by season, team type and federation and page with `limit` and `offset`. A ranking is bounded to roughly its top 200 entries; `final` marks the last page.",
+        "operationId": "fussballde-amateur-stats",
+        "parameters": [
+          {
+            "description": "Ranking id",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9",
+              "10"
+            ],
+            "in": "query",
+            "name": "stat",
+            "required": true,
+            "type": "string",
+            "x-example": "8"
+          },
+          {
+            "description": "Four-digit season code, 2627 for 2026/27; the site offers the current and previous season",
+            "in": "query",
+            "name": "season",
+            "type": "string",
+            "x-example": "2627"
+          },
+          {
+            "description": "Team type id; omit for all",
+            "enum": [
+              "1",
+              "3",
+              "6",
+              "8",
+              "4",
+              "5",
+              "7",
+              "9"
+            ],
+            "in": "query",
+            "name": "team_type",
+            "type": "string",
+            "x-example": "1"
+          },
+          {
+            "description": "Federation id; omit for all federations",
+            "enum": [
+              "89",
+              "32",
+              "31",
+              "66",
+              "61",
+              "02",
+              "03",
+              "34",
+              "62",
+              "23",
+              "22",
+              "01",
+              "41",
+              "43",
+              "63",
+              "64",
+              "04",
+              "33",
+              "42",
+              "65",
+              "21",
+              "35"
+            ],
+            "in": "query",
+            "name": "federation_id",
+            "type": "string",
+            "x-example": "21"
+          },
+          {
+            "description": "Rows per call, 1 to 100, default 30",
+            "in": "query",
+            "name": "limit",
+            "type": "integer",
+            "x-example": 30
+          },
+          {
+            "description": "Number of rows to skip, 0 to 1000, default 0",
+            "in": "query",
+            "name": "offset",
+            "type": "integer",
+            "x-example": 0
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/fussballde.amateurStatsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get FUSSBALL.DE amateur top statistics",
+        "tags": [
+          "fussballde"
+        ]
+      }
+    },
+    "/fussballde/club": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one club: name, federation, team counts, profile facts (founding year, address, website) and the club's teams with their competitions and team type. Teams are those of the current season; set `season` for an earlier one and `competition_kind` to keep only teams in championships, cups, friendlies and so on. Club ids appear as `club_id` on teams and matches.",
+        "operationId": "fussballde-club",
+        "parameters": [
+          {
+            "description": "Club id from a team or match, e.g. 00ES8GN8N400008VVV0AG08LVUPGND5I",
+            "in": "query",
+            "name": "club_id",
+            "required": true,
+            "type": "string",
+            "x-example": "00ES8GN8N400008VVV0AG08LVUPGND5I"
+          },
+          {
+            "description": "Four-digit season code such as 2526; default current season",
+            "in": "query",
+            "name": "season",
+            "type": "string",
+            "x-example": "2526"
+          },
+          {
+            "description": "Competition kind id; omit for all kinds",
+            "enum": [
+              "1",
+              "8",
+              "3",
+              "7",
+              "6",
+              "11",
+              "2",
+              "21",
+              "9"
+            ],
+            "in": "query",
+            "name": "competition_kind",
+            "type": "string",
+            "x-example": "1"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/fussballde.clubResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a FUSSBALL.DE club",
+        "tags": [
+          "fussballde"
+        ]
+      }
+    },
+    "/fussballde/club-matches": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the fixtures and results across all of a club's teams (senior and youth). `all` (default) is the club match plan for a date window (default the current season) optionally for one competition kind and paged with `limit` and `offset`; `next` is the next fixtures and `previous` the latest results. Each match names its competition and team type.",
+        "operationId": "fussballde-club-matches",
+        "parameters": [
+          {
+            "description": "Club id from fussballde-club or fussballde-club-search",
+            "in": "query",
+            "name": "club_id",
+            "required": true,
+            "type": "string",
+            "x-example": "00ES8GN8N400008VVV0AG08LVUPGND5I"
+          },
+          {
+            "description": "Match list kind, default all",
+            "enum": [
+              "all",
+              "next",
+              "previous"
+            ],
+            "in": "query",
+            "name": "kind",
+            "type": "string",
+            "x-example": "all"
+          },
+          {
+            "description": "kind all only: first day as YYYY-MM-DD, default 1 July of the current season",
+            "in": "query",
+            "name": "date_from",
+            "type": "string",
+            "x-example": "2026-10-01"
+          },
+          {
+            "description": "kind all only: last day as YYYY-MM-DD, default 30 June of the season",
+            "in": "query",
+            "name": "date_to",
+            "type": "string",
+            "x-example": "2026-10-31"
+          },
+          {
+            "description": "kind all only: competition kind id; omit for all kinds",
+            "enum": [
+              "1",
+              "8",
+              "3",
+              "7",
+              "6",
+              "11",
+              "2",
+              "21",
+              "9"
+            ],
+            "in": "query",
+            "name": "competition_kind",
+            "type": "string",
+            "x-example": "8"
+          },
+          {
+            "description": "Matches (kind all only) per call, 1 to 50, default 10",
+            "in": "query",
+            "name": "limit",
+            "type": "integer",
+            "x-example": 10
+          },
+          {
+            "description": "Number of matches to skip, 0 to 1000, default 0",
+            "in": "query",
+            "name": "offset",
+            "type": "integer",
+            "x-example": 0
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/fussballde.clubMatchesResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get FUSSBALL.DE fixtures and results of a club",
+        "tags": [
+          "fussballde"
+        ]
+      }
+    },
+    "/fussballde/club-search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches FUSSBALL.DE clubs by club name, postcode or place, or both (both must match), and returns each club's id, name, postal code, city and logo. The first page reports the `total` hit count; page with `limit` (1 to 100, default 20) and `offset`, and `final` marks the last page. Zero results is a valid response. The site's search is not fuzzy and matches a club's official name (for example `RasenBallsport Leipzig`, `SC Freiburg`), so a looser display name such as `RB Leipzig` can return nothing: search by place or one distinctive word, or use the `club_id` that every team, table and match row already carries.",
+        "operationId": "fussballde-club-search",
+        "parameters": [
+          {
+            "description": "Club name or part of it; text or place is required",
+            "in": "query",
+            "name": "text",
+            "type": "string",
+            "x-example": "Dortmund"
+          },
+          {
+            "description": "Postcode or place name; text or place is required",
+            "in": "query",
+            "name": "place",
+            "type": "string",
+            "x-example": "44139"
+          },
+          {
+            "description": "Clubs per call, 1 to 100, default 20",
+            "in": "query",
+            "name": "limit",
+            "type": "integer",
+            "x-example": 20
+          },
+          {
+            "description": "Number of clubs to skip, 0 to 2000, default 0",
+            "in": "query",
+            "name": "offset",
+            "type": "integer",
+            "x-example": 0
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/fussballde.clubSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search FUSSBALL.DE clubs by name or place",
+        "tags": [
+          "fussballde"
+        ]
+      }
+    },
+    "/fussballde/competition-options": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the team types (Herren, Frauen, A-Junioren, ...), the leagues (Spielklassen) of each team type and the areas (Gebiete) of each league for one federation, season and competition type. Team type, league and area ids are federation-specific, so take them from this response and pass them to `fussballde-competitions`.",
+        "operationId": "fussballde-competition-options",
+        "parameters": [
+          {
+            "description": "Federation id",
+            "enum": [
+              "89",
+              "32",
+              "31",
+              "66",
+              "61",
+              "02",
+              "03",
+              "34",
+              "62",
+              "23",
+              "22",
+              "01",
+              "41",
+              "43",
+              "63",
+              "64",
+              "04",
+              "33",
+              "42",
+              "65",
+              "21",
+              "35"
+            ],
+            "in": "query",
+            "name": "federation_id",
+            "required": true,
+            "type": "string",
+            "x-example": "89"
+          },
+          {
+            "description": "Four-digit season code, 2627 for 2026/27",
+            "in": "query",
+            "name": "season",
+            "required": true,
+            "type": "string",
+            "x-example": "2627"
+          },
+          {
+            "description": "Competition type id, default 1",
+            "enum": [
+              "1",
+              "308",
+              "300",
+              "70",
+              "305",
+              "-300",
+              "-305",
+              "11",
+              "2",
+              "-2",
+              "12"
+            ],
+            "in": "query",
+            "name": "competition_type",
+            "type": "string",
+            "x-example": "1"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/fussballde.competitionOptionsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List FUSSBALL.DE team types, leagues and areas",
+        "tags": [
+          "fussballde"
+        ]
+      }
+    },
+    "/fussballde/competitions": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the competitions (Staffeln) at one selector path: a federation, season, competition type, team type, league and area. Each competition `id` (for example `031BFREJC800001BVS5489BUVUR5FS5A-G` for the 2026/27 Bundesliga) is the key used by the matchday, match plan, table and top-scorer endpoints. An empty list is a valid result for a path with no competitions.",
+        "operationId": "fussballde-competitions",
+        "parameters": [
+          {
+            "description": "Federation id",
+            "enum": [
+              "89",
+              "32",
+              "31",
+              "66",
+              "61",
+              "02",
+              "03",
+              "34",
+              "62",
+              "23",
+              "22",
+              "01",
+              "41",
+              "43",
+              "63",
+              "64",
+              "04",
+              "33",
+              "42",
+              "65",
+              "21",
+              "35"
+            ],
+            "in": "query",
+            "name": "federation_id",
+            "required": true,
+            "type": "string",
+            "x-example": "89"
+          },
+          {
+            "description": "Four-digit season code",
+            "in": "query",
+            "name": "season",
+            "required": true,
+            "type": "string",
+            "x-example": "2627"
+          },
+          {
+            "description": "Competition type id, default 1",
+            "enum": [
+              "1",
+              "308",
+              "300",
+              "70",
+              "305",
+              "-300",
+              "-305",
+              "11",
+              "2",
+              "-2",
+              "12"
+            ],
+            "in": "query",
+            "name": "competition_type",
+            "type": "string",
+            "x-example": "1"
+          },
+          {
+            "description": "Team type id from fussballde-competition-options",
+            "in": "query",
+            "name": "team_type",
+            "required": true,
+            "type": "string",
+            "x-example": "1"
+          },
+          {
+            "description": "League id from fussballde-competition-options",
+            "in": "query",
+            "name": "league",
+            "required": true,
+            "type": "string",
+            "x-example": "1"
+          },
+          {
+            "description": "Area id from fussballde-competition-options",
+            "in": "query",
+            "name": "area",
+            "required": true,
+            "type": "string",
+            "x-example": "0123456789ABCDEF0123456700004010"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/fussballde.competitionsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List FUSSBALL.DE competitions for a league and area",
+        "tags": [
+          "fussballde"
+        ]
+      }
+    },
+    "/fussballde/federation": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the profile of one of the 22 federations (the DFB and the regional and state associations) or of one of the five regional associations (Norddeutscher, Nordostdeutscher, Süddeutscher, Südwest and Westdeutscher): name, address, website, president, club, member and team counts, and the latest news items. Provide exactly one of `federation_id` and `regional_association`.",
+        "operationId": "fussballde-federation",
+        "parameters": [
+          {
+            "description": "Federation id; provide exactly one of federation_id and regional_association",
+            "enum": [
+              "89",
+              "32",
+              "31",
+              "66",
+              "61",
+              "02",
+              "03",
+              "34",
+              "62",
+              "23",
+              "22",
+              "01",
+              "41",
+              "43",
+              "63",
+              "64",
+              "04",
+              "33",
+              "42",
+              "65",
+              "21",
+              "35"
+            ],
+            "in": "query",
+            "name": "federation_id",
+            "type": "string",
+            "x-example": "21"
+          },
+          {
+            "description": "Regional association; provide exactly one of federation_id and regional_association",
+            "enum": [
+              "nord",
+              "nordost",
+              "sued",
+              "suedwest",
+              "west"
+            ],
+            "in": "query",
+            "name": "regional_association",
+            "type": "string",
+            "x-example": "west"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/fussballde.federationResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a FUSSBALL.DE federation or regional association",
+        "tags": [
+          "fussballde"
+        ]
+      }
+    },
+    "/fussballde/filters": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the competition selector base data of FUSSBALL.DE, the German amateur-football portal: the 22 federations (DFB plus regional associations), the available seasons per federation, and the competition types per federation and season. Use it first to get valid `federation_id`, `season` and `competition_type` values for the competition discovery endpoints.",
+        "operationId": "fussballde-filters",
+        "parameters": [
+          {
+            "description": "Optional federation id that narrows seasons and competition types to one federation",
+            "enum": [
+              "89",
+              "32",
+              "31",
+              "66",
+              "61",
+              "02",
+              "03",
+              "34",
+              "62",
+              "23",
+              "22",
+              "01",
+              "41",
+              "43",
+              "63",
+              "64",
+              "04",
+              "33",
+              "42",
+              "65",
+              "21",
+              "35"
+            ],
+            "in": "query",
+            "name": "federation_id",
+            "type": "string",
+            "x-example": "31"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/fussballde.filtersResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List FUSSBALL.DE federations, seasons and competition types",
+        "tags": [
+          "fussballde"
+        ]
+      }
+    },
+    "/fussballde/match": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one match: teams, competition, date, kick-off time, venue, score and half-time score, match number and matchday, officials, goals with minutes and timeline events such as substitutions. Fields the match has not published (for example a future match's score) are omitted.",
+        "operationId": "fussballde-match",
+        "parameters": [
+          {
+            "description": "Match id from fussballde-matchday or fussballde-match-plan",
+            "in": "query",
+            "name": "match_id",
+            "required": true,
+            "type": "string",
+            "x-example": "031BFTHDCC000000VS5489BUVUR5FS5A"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/fussballde.matchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a FUSSBALL.DE match",
+        "tags": [
+          "fussballde"
+        ]
+      }
+    },
+    "/fussballde/match-calendar": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the matches FUSSBALL.DE's Matchkalender lists around a five-digit postcode within a date range (default today plus six days, at most 92 days), optionally filtered by team types and competition kind. Each match includes its team type (for example D-Junioren) and league. The upstream returns at most 10 matches per request and has no paging: `truncated` is true when the page is full, so narrow the dates or filters to see the rest. Zero matches is a valid response.",
+        "operationId": "fussballde-match-calendar",
+        "parameters": [
+          {
+            "description": "Five-digit German postcode; look one up with fussballde-postal-codes",
+            "in": "query",
+            "name": "postal_code",
+            "required": true,
+            "type": "string",
+            "x-example": "44139"
+          },
+          {
+            "description": "First day as YYYY-MM-DD, default today (Europe/Berlin)",
+            "in": "query",
+            "name": "date_from",
+            "type": "string",
+            "x-example": "2026-10-24"
+          },
+          {
+            "description": "Last day as YYYY-MM-DD, at most 92 days after date_from, default six days after date_from",
+            "in": "query",
+            "name": "date_to",
+            "type": "string",
+            "x-example": "2026-10-31"
+          },
+          {
+            "description": "Comma-separated team type ids such as 1,3; omit for all team types",
+            "in": "query",
+            "name": "team_types",
+            "type": "string",
+            "x-example": "1,3"
+          },
+          {
+            "description": "Competition kind id; omit for all kinds",
+            "enum": [
+              "1",
+              "8",
+              "3",
+              "7",
+              "6",
+              "11",
+              "2",
+              "21",
+              "9"
+            ],
+            "in": "query",
+            "name": "competition_kind",
+            "type": "string",
+            "x-example": "1"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/fussballde.matchCalendarResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get FUSSBALL.DE matches near a postcode",
+        "tags": [
+          "fussballde"
+        ]
+      }
+    },
+    "/fussballde/match-comparison": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a pre-match comparison for one match: `history` is the all-time head-to-head record (duels, wins, draws, defeats, goals), `meetings` lists the other fixtures and results between the two teams, and `season` compares both teams' current standing, points, goals, form, top scorer and cards.",
+        "operationId": "fussballde-match-comparison",
+        "parameters": [
+          {
+            "description": "Match id from fussballde-matchday or fussballde-match-plan",
+            "in": "query",
+            "name": "match_id",
+            "required": true,
+            "type": "string",
+            "x-example": "031BFTHDCC000000VS5489BUVUR5FS5A"
+          },
+          {
+            "description": "Comparison view, default history",
+            "enum": [
+              "history",
+              "meetings",
+              "season"
+            ],
+            "in": "query",
+            "name": "view",
+            "type": "string",
+            "x-example": "history"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/fussballde.matchComparisonResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Compare the two teams of a FUSSBALL.DE match",
+        "tags": [
+          "fussballde"
+        ]
+      }
+    },
+    "/fussballde/match-plan": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns every match of a competition's season (fixtures and results), including the earliest matchdays, optionally filtered to one team and a date window; the date window is applied by the site, so a narrow window is cheaper than filtering a full season. Cups and tournaments are assembled round by round: every match carries its `round` and the response lists the `rounds` with their ids. Use it for a complete schedule; use `fussballde-matchday` for one matchday.",
+        "operationId": "fussballde-match-plan",
+        "parameters": [
+          {
+            "description": "Competition id from fussballde-competitions",
+            "in": "query",
+            "name": "competition_id",
+            "required": true,
+            "type": "string",
+            "x-example": "031BFREJC800001BVS5489BUVUR5FS5A-G"
+          },
+          {
+            "description": "Team id to keep only that team's matches",
+            "in": "query",
+            "name": "team_id",
+            "type": "string",
+            "x-example": "011MI8V6UC000000VTVG0001VTR8C1K7"
+          },
+          {
+            "description": "Earliest match date as YYYY-MM-DD; default is the whole season",
+            "in": "query",
+            "name": "date_from",
+            "type": "string",
+            "x-example": "2026-10-01"
+          },
+          {
+            "description": "Latest match date as YYYY-MM-DD; default is the whole season",
+            "in": "query",
+            "name": "date_to",
+            "type": "string",
+            "x-example": "2026-10-31"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/fussballde.matchPlanResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get the full FUSSBALL.DE match plan of a competition",
+        "tags": [
+          "fussballde"
+        ]
+      }
+    },
+    "/fussballde/matchday": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the matches of a competition's current matchday, of a numbered matchday (`matchday`, 1 to the competition's matchday count, reported as `matchday_count`) or of the matchday around a date. Each match has teams, date, kick-off time, score and status (`finished`, `scheduled`, `cancelled` and the other values listed below). Cups and tournaments have no numbered matchdays; for them the response lists the competition's `rounds` (each round id works as `competition_id` to read that round) and labels every match with its `round`. Dates, times and scores are decoded from the site's obfuscated glyph fonts.",
+        "operationId": "fussballde-matchday",
+        "parameters": [
+          {
+            "description": "Competition id from fussballde-competitions",
+            "in": "query",
+            "name": "competition_id",
+            "required": true,
+            "type": "string",
+            "x-example": "031BFREJC800001BVS5489BUVUR5FS5A-G"
+          },
+          {
+            "description": "Matchday date as YYYY-MM-DD; omit for the current matchday; cannot be combined with matchday",
+            "in": "query",
+            "name": "date",
+            "type": "string",
+            "x-example": "2026-10-03"
+          },
+          {
+            "description": "Matchday number, 1 to the competition's matchday count (34 for the Bundesliga); cannot be combined with date",
+            "in": "query",
+            "name": "matchday",
+            "type": "integer",
+            "x-example": 3
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/fussballde.matchdayResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get FUSSBALL.DE matches of a competition matchday",
+        "tags": [
+          "fussballde"
+        ]
+      }
+    },
+    "/fussballde/national-top-scorers": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the top 10 scorers of every league level across Germany for men or women (the site's Torjägerkanone), with goals, matches played and club. Only championship matches count and the upstream refreshes the ranking once a day; the response `note` carries its last-update time. Adult teams only.",
+        "operationId": "fussballde-national-top-scorers",
+        "parameters": [
+          {
+            "description": "Ranking to return, default men",
+            "enum": [
+              "men",
+              "women"
+            ],
+            "in": "query",
+            "name": "team_type",
+            "type": "string",
+            "x-example": "men"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/fussballde.nationalTopScorersResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get the nationwide FUSSBALL.DE top scorers by league level",
+        "tags": [
+          "fussballde"
+        ]
+      }
+    },
+    "/fussballde/news": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns news teasers of one FUSSBALL.DE stream (all news, magazine, Regionalliga, federations, service, campaigns or help center) with title, category, publication date and time, and excerpt, paged with `limit` (1 to 50, default 10) and `offset`; `final` is true on the last page. Use `regional_league` or `help_category` to narrow the Regionalliga and help-center streams to one league or category. Use the article id with `fussballde-news-article` for the full text.",
+        "operationId": "fussballde-news",
+        "parameters": [
+          {
+            "description": "News stream, default all_news",
+            "enum": [
+              "all_news",
+              "magazin",
+              "regionalliga",
+              "verbaende",
+              "service",
+              "aktionen",
+              "helpcenter"
+            ],
+            "in": "query",
+            "name": "stream",
+            "type": "string",
+            "x-example": "all_news"
+          },
+          {
+            "description": "Only Regionalliga news of one league (implies stream regionalliga)",
+            "enum": [
+              "nord",
+              "nordost",
+              "west",
+              "suedwest",
+              "bayern"
+            ],
+            "in": "query",
+            "name": "regional_league",
+            "type": "string",
+            "x-example": "nord"
+          },
+          {
+            "description": "Only help-center articles of one category (implies stream helpcenter)",
+            "enum": [
+              "allgemeines",
+              "app",
+              "liveticker",
+              "mannschaftsseite",
+              "profile",
+              "registrierung",
+              "training_service",
+              "widgets"
+            ],
+            "in": "query",
+            "name": "help_category",
+            "type": "string",
+            "x-example": "app"
+          },
+          {
+            "description": "Articles per call, 1 to 50, default 10",
+            "in": "query",
+            "name": "limit",
+            "type": "integer",
+            "x-example": 10
+          },
+          {
+            "description": "Number of articles to skip, 0 to 5000, default 0",
+            "in": "query",
+            "name": "offset",
+            "type": "integer",
+            "x-example": 0
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/fussballde.newsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List FUSSBALL.DE news",
+        "tags": [
+          "fussballde"
+        ]
+      }
+    },
+    "/fussballde/news-article": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one FUSSBALL.DE news article: title, category, publication date and time, lead image and caption, and the body paragraphs as plain text.",
+        "operationId": "fussballde-news-article",
+        "parameters": [
+          {
+            "description": "Numeric article id from fussballde-news",
+            "in": "query",
+            "name": "article_id",
+            "required": true,
+            "type": "string",
+            "x-example": "10067512"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/fussballde.newsArticleResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a FUSSBALL.DE news article",
+        "tags": [
+          "fussballde"
+        ]
+      }
+    },
+    "/fussballde/news-search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches FUSSBALL.DE editorial news (`news`) or the Profi-Newsflash (`pro_news`) by keyword and returns teasers with title, category, date and excerpt. The first page (offset 0) also reports the total hit count; page with `limit` (1 to 50) and `offset`. No hits is a valid empty result.",
+        "operationId": "fussballde-news-search",
+        "parameters": [
+          {
+            "description": "Search text, 2 to 80 characters",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string",
+            "x-example": "Dortmund"
+          },
+          {
+            "description": "News channel, default news",
+            "enum": [
+              "news",
+              "pro_news"
+            ],
+            "in": "query",
+            "name": "channel",
+            "type": "string",
+            "x-example": "news"
+          },
+          {
+            "description": "Articles per call, 1 to 50, default 10",
+            "in": "query",
+            "name": "limit",
+            "type": "integer",
+            "x-example": 10
+          },
+          {
+            "description": "Number of hits to skip, 0 to 10000, default 0",
+            "in": "query",
+            "name": "offset",
+            "type": "integer",
+            "x-example": 0
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/fussballde.newsSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search FUSSBALL.DE news",
+        "tags": [
+          "fussballde"
+        ]
+      }
+    },
+    "/fussballde/player": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a player's public profile: name, team, team type, birth date and, for registered players (`profile_type` full), the current-season statistics such as appearances, minutes played, goals, goals against and cards. Players without a registered profile (`profile_type` basic) only have name, team and team type. Player ids come from `fussballde-player-search`, scorer lists, squads and amateur statistics.",
+        "operationId": "fussballde-player",
+        "parameters": [
+          {
+            "description": "Player id from fussballde-player-search, fussballde-top-scorers, fussballde-team-squad or fussballde-amateur-stats",
+            "in": "query",
+            "name": "player_id",
+            "required": true,
+            "type": "string",
+            "x-example": "01MH0AKR7C000007VV0AG13EVSFDFGE6"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/fussballde.playerResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a FUSSBALL.DE player profile",
+        "tags": [
+          "fussballde"
+        ]
+      }
+    },
+    "/fussballde/player-matches": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a registered player's matches for one season and team: date, teams, result and per match the goals, the minute they were substituted in or out, and minutes played. Also lists the player's teams and competitions for the season so another team can be selected with `team_id`. Basic profiles without registration have no match data.",
+        "operationId": "fussballde-player-matches",
+        "parameters": [
+          {
+            "description": "Player id of a full profile, see fussballde-player",
+            "in": "query",
+            "name": "player_id",
+            "required": true,
+            "type": "string",
+            "x-example": "01MH0AKR7C000007VV0AG13EVSFDFGE6"
+          },
+          {
+            "description": "Four-digit season code, default current season",
+            "in": "query",
+            "name": "season",
+            "type": "string",
+            "x-example": "2627"
+          },
+          {
+            "description": "Team id from the teams list of a previous response; default the player's main team",
+            "in": "query",
+            "name": "team_id",
+            "type": "string",
+            "x-example": "030POM2JO0000000VS5489BSVSO3A7B3"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/fussballde.playerMatchesResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a FUSSBALL.DE player's match-by-match record",
+        "tags": [
+          "fussballde"
+        ]
+      }
+    },
+    "/fussballde/player-search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches players registered on FUSSBALL.DE by first and/or last name, optionally narrowed by postcode or place, and returns each player's id, name, birth date, team and team type. The first page reports the `total` hit count; page with `limit` (1 to 100, default 20) and `offset`, and `final` marks the last page. At least one of `first_name` and `last_name` is required. No match is a valid empty result.",
+        "operationId": "fussballde-player-search",
+        "parameters": [
+          {
+            "description": "First name; first_name or last_name is required",
+            "in": "query",
+            "name": "first_name",
+            "type": "string",
+            "x-example": "Niclas"
+          },
+          {
+            "description": "Last name; first_name or last_name is required",
+            "in": "query",
+            "name": "last_name",
+            "type": "string",
+            "x-example": "Füllkrug"
+          },
+          {
+            "description": "Postcode or place name to narrow the result; cannot be used alone",
+            "in": "query",
+            "name": "place",
+            "type": "string",
+            "x-example": "44139"
+          },
+          {
+            "description": "Players per call, 1 to 100, default 20",
+            "in": "query",
+            "name": "limit",
+            "type": "integer",
+            "x-example": 20
+          },
+          {
+            "description": "Number of players to skip, 0 to 2000, default 0",
+            "in": "query",
+            "name": "offset",
+            "type": "integer",
+            "x-example": 0
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/fussballde.playerSearchResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search FUSSBALL.DE players by name",
+        "tags": [
+          "fussballde"
+        ]
+      }
+    },
+    "/fussballde/position-history": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns every team's table position after each played matchday of a competition (the site's Fieberkurve), as one ordered list of positions per team. Position 1 is the leader; the list index is the matchday.",
+        "operationId": "fussballde-position-history",
+        "parameters": [
+          {
+            "description": "Competition id from fussballde-competitions",
+            "in": "query",
+            "name": "competition_id",
+            "required": true,
+            "type": "string",
+            "x-example": "031BFREJC800001BVS5489BUVUR5FS5A-G"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/fussballde.positionHistoryResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get the FUSSBALL.DE fever curve of a competition",
+        "tags": [
+          "fussballde"
+        ]
+      }
+    },
+    "/fussballde/postal-codes": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the German postcodes (with city and district) that FUSSBALL.DE's own location search suggests for a place name or postcode prefix. Use it to turn a place such as Dortmund into the five-digit `postal_code` that `fussballde-match-calendar` requires. No match is a valid empty list.",
+        "operationId": "fussballde-postal-codes",
+        "parameters": [
+          {
+            "description": "Place name or postcode prefix, 2 to 40 characters",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string",
+            "x-example": "Dortmund"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/fussballde.postalCodesResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Look up German postcodes by place name",
+        "tags": [
+          "fussballde"
+        ]
+      }
+    },
+    "/fussballde/table": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a competition's standings in one view: `overall`, `home_away` (home and away tables), `rounds` (first and second half-season tables), `fairness` (fair-play table) or `cross` (cross table of results between every pair of teams). Set `matchday` to get the standings as they were after that matchday (not available for `fairness`). Rows carry position, team, played, won, drawn, lost, goals and points where the view has them, plus the raw cells.",
+        "operationId": "fussballde-table",
+        "parameters": [
+          {
+            "description": "Competition id from fussballde-competitions",
+            "in": "query",
+            "name": "competition_id",
+            "required": true,
+            "type": "string",
+            "x-example": "031BFREJC800001BVS5489BUVUR5FS5A-G"
+          },
+          {
+            "description": "Standings view, default overall",
+            "enum": [
+              "overall",
+              "home_away",
+              "rounds",
+              "fairness",
+              "cross"
+            ],
+            "in": "query",
+            "name": "view",
+            "type": "string",
+            "x-example": "overall"
+          },
+          {
+            "description": "Return the standings after this matchday, 1 to the competition's matchday count; not available for the fairness view",
+            "in": "query",
+            "name": "matchday",
+            "type": "integer",
+            "x-example": 3
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/fussballde.tableResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a FUSSBALL.DE competition standings table",
+        "tags": [
+          "fussballde"
+        ]
+      }
+    },
+    "/fussballde/team": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one team page: name, team type, federation, standing summary (competition, table position, points, goal ratio), current competitions, home venues, the club profile (founding year, address, contact) and the team's season-by-season history with final placings and the highest league reached. Use `fussballde-team-matches` and `fussballde-team-squad` for fixtures and players.",
+        "operationId": "fussballde-team",
+        "parameters": [
+          {
+            "description": "Team id from fussballde-matchday, fussballde-table or fussballde-club",
+            "in": "query",
+            "name": "team_id",
+            "required": true,
+            "type": "string",
+            "x-example": "011MI8V6UC000000VTVG0001VTR8C1K7"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/fussballde.teamResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a FUSSBALL.DE team",
+        "tags": [
+          "fussballde"
+        ]
+      }
+    },
+    "/fussballde/team-matches": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a team's matches across its competitions. `all` (default) is the match plan for a date window (default the current season, 1 July to 30 June), optionally for one competition kind and paged with `limit` and `offset`; `next` is the next 10 fixtures, `previous` the latest 10 results, and `wins`, `draws` and `losses` the latest 10 finished matches with that outcome.",
+        "operationId": "fussballde-team-matches",
+        "parameters": [
+          {
+            "description": "Team id, see fussballde-team",
+            "in": "query",
+            "name": "team_id",
+            "required": true,
+            "type": "string",
+            "x-example": "011MI8V6UC000000VTVG0001VTR8C1K7"
+          },
+          {
+            "description": "Match list kind, default all",
+            "enum": [
+              "all",
+              "next",
+              "previous",
+              "wins",
+              "draws",
+              "losses"
+            ],
+            "in": "query",
+            "name": "kind",
+            "type": "string",
+            "x-example": "all"
+          },
+          {
+            "description": "kind all only: first day as YYYY-MM-DD, default 1 July of the current season",
+            "in": "query",
+            "name": "date_from",
+            "type": "string",
+            "x-example": "2026-07-01"
+          },
+          {
+            "description": "kind all only: last day as YYYY-MM-DD, default 30 June of the season",
+            "in": "query",
+            "name": "date_to",
+            "type": "string",
+            "x-example": "2027-06-30"
+          },
+          {
+            "description": "kind all only: competition kind id; omit for all kinds",
+            "enum": [
+              "1",
+              "8",
+              "3",
+              "7",
+              "6",
+              "11",
+              "2",
+              "21",
+              "9"
+            ],
+            "in": "query",
+            "name": "competition_kind",
+            "type": "string",
+            "x-example": "8"
+          },
+          {
+            "description": "Matches (kind all only) per call, 1 to 50, default 10",
+            "in": "query",
+            "name": "limit",
+            "type": "integer",
+            "x-example": 10
+          },
+          {
+            "description": "Number of matches to skip, 0 to 1000, default 0",
+            "in": "query",
+            "name": "offset",
+            "type": "integer",
+            "x-example": 0
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/fussballde.teamMatchesResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get FUSSBALL.DE fixtures and results of a team",
+        "tags": [
+          "fussballde"
+        ]
+      }
+    },
+    "/fussballde/team-squad": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a team's players for a season: the `squad` (appearances, minutes, goals), `arrivals` or `departures` with the columns the site publishes for each. Player names come in the site's `Surname, Forename` order.",
+        "operationId": "fussballde-team-squad",
+        "parameters": [
+          {
+            "description": "Team id, see fussballde-team",
+            "in": "query",
+            "name": "team_id",
+            "required": true,
+            "type": "string",
+            "x-example": "011MI8V6UC000000VTVG0001VTR8C1K7"
+          },
+          {
+            "description": "Four-digit season code, default current season",
+            "in": "query",
+            "name": "season",
+            "type": "string",
+            "x-example": "2627"
+          },
+          {
+            "description": "Player list kind, default squad",
+            "enum": [
+              "squad",
+              "arrivals",
+              "departures"
+            ],
+            "in": "query",
+            "name": "kind",
+            "type": "string",
+            "x-example": "squad"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/fussballde.teamSquadResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a FUSSBALL.DE team squad",
+        "tags": [
+          "fussballde"
+        ]
+      }
+    },
+    "/fussballde/top-scorers": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a page of a competition's top-scorer list with position, player, team and goals; page through it with `limit` (1 to 100, default 30) and `offset`. Tied scorers share a position. A competition without recorded scorers returns an empty list; cups and tournaments have no scorer list at all and return 404.",
+        "operationId": "fussballde-top-scorers",
+        "parameters": [
+          {
+            "description": "Competition id from fussballde-competitions",
+            "in": "query",
+            "name": "competition_id",
+            "required": true,
+            "type": "string",
+            "x-example": "031BFREJC800001BVS5489BUVUR5FS5A-G"
+          },
+          {
+            "description": "Scorers per call, 1 to 100, default 30",
+            "in": "query",
+            "name": "limit",
+            "type": "integer",
+            "x-example": 30
+          },
+          {
+            "description": "Number of scorers to skip, 0 to 1000, default 0",
+            "in": "query",
+            "name": "offset",
+            "type": "integer",
+            "x-example": 0
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/fussballde.topScorersResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get the FUSSBALL.DE top scorers of a competition",
+        "tags": [
+          "fussballde"
+        ]
+      }
+    }
+  },
+  "schemes": [
+    "https"
+  ],
+  "securityDefinitions": {
+    "ApiKeyAuth": {
+      "in": "header",
+      "name": "x-api-key",
+      "type": "apiKey"
+    }
+  },
+  "swagger": "2.0",
+  "tags": [
+    {
+      "name": "fussballde"
+    }
+  ]
+}

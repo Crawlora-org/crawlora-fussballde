@@ -1,0 +1,34 @@
+{
+  "name": "@crawlora-org/fussballde",
+  "version": "0.1.0",
+  "description": "Crawlora Fussball.de API client with 27 endpoints for amateur football clubs, players, matches, statistics, news, and federation data",
+  "homepage": "https://crawlora.net/?utm_source=npm&utm_medium=referral&utm_campaign=platform-clients&utm_content=fussballde-javascript-homepage",
+  "bugs": { "url": "https://github.com/Crawlora-org/crawlora-fussballde/issues" },
+  "keywords": ["crawlora", "api-client", "sdk", "web-scraping", "scraping-api", "fussballde", "fussball-de", "fussballde-api", "fussball-de-api", "fussballde-scraper", "fussball-de-scraper", "fussballde-data", "fussball-de-data", "fussballde-amateur-football-clubs", "fussballde-players", "fussballde-matches", "fussballde-statistics", "fussballde-news", "fussballde-federation-data"],
+  "type": "module",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./src/index.js"
+    }
+  },
+  "files": ["src", "README.md", "LICENSE"],
+  "engines": { "node": ">=18" },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Crawlora-org/crawlora-fussballde",
+    "directory": "javascript"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "typecheck": "tsc --noEmit",
+    "pack:check": "npm pack --dry-run --ignore-scripts",
+    "generate": "python3 ../scripts/generate.py"
+  },
+  "devDependencies": {
+    "typescript": "5.8.3"
+  }
+}

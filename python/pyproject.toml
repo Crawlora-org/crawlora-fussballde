@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "crawlora-fussballde"
+version = "0.1.0"
+description = "Crawlora Fussball.de API client with 27 endpoints for amateur football clubs, players, matches, statistics, news, and federation data"
+readme = "README.md"
+keywords = ["crawlora", "api-client", "sdk", "web-scraping", "scraping-api", "fussballde", "fussball-de", "fussballde-api", "fussball-de-api", "fussballde-scraper", "fussball-de-scraper", "fussballde-data", "fussball-de-data", "fussballde-amateur-football-clubs", "fussballde-players", "fussballde-matches", "fussballde-statistics", "fussballde-news", "fussballde-federation-data"]
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Crawlora" }]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Typing :: Typed",
+]
+dependencies = ["typing-extensions>=4.7; python_version < '3.11'"]
+
+[project.optional-dependencies]
+async = ["httpx>=0.27"]
+test = ["mypy>=1.11", "pytest>=8"]
+
+[project.urls]
+Homepage = "https://crawlora.net/?utm_source=pypi&utm_medium=referral&utm_campaign=platform-clients&utm_content=fussballde-python-homepage"
+Documentation = "https://crawlora.net/docs?utm_source=pypi&utm_medium=referral&utm_campaign=platform-clients&utm_content=fussballde-python-api-docs"
+Repository = "https://github.com/Crawlora-org/crawlora-fussballde"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["crawlora_fussballde"]
+
+[tool.setuptools.package-data]
+"crawlora_fussballde" = ["py.typed", "*.pyi"]
