@@ -1,4 +1,5 @@
 {
+  "api_path_prefix": "/fussballde/",
   "async_class_name": "AsyncFussballdeClient",
   "class_name": "FussballdeClient",
   "contract_revision": "sha256:c0a322b3f5d6832b349dd86359e8c7e3cb9ba91c30cab51a67acc9a0fe3960a1",

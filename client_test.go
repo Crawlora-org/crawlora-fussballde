@@ -26,8 +26,13 @@ func TestGeneratedClientRequestAndAllowlist(t *testing.T) {
 			if got := r.URL.Query().Get("text"); got != "space & value" {
 				t.Errorf("query value = %q", got)
 			}
-			if false && len(r.URL.Query()["text"]) != 2 {
-				t.Errorf("array query values = %#v", r.URL.Query()["text"])
+			if false {
+				if got := r.URL.Query().Get("text"); got != "" {
+					t.Errorf("array query value = %q, want %q", got, "")
+				}
+				if false && len(r.URL.Query()["text"]) != 2 {
+					t.Errorf("array query values = %#v", r.URL.Query()["text"])
+				}
 			}
 		}
 		if "text" != "" && !strings.Contains(r.URL.RawQuery, "text=space+%26+value") {
